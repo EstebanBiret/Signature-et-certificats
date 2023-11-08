@@ -20,3 +20,16 @@ Pour un site web il s’agit d’un certificat SSL et le standard le plus utilis
   
 - [Sources](#sources)
 
+## Signatures
+
+### Signer numériquement un document
+
+### Vérifier que la signature est celle de l'entité cible
+
+## Certificats
+
+### Génération d'un certificat
+
+### Faire certifier sa clé publique
+
+## Sources
