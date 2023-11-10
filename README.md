@@ -29,9 +29,71 @@ Pourquoi opter pour la signature numérique ?
 Elle présente plusieurs avantages à la signature manuscrite : 
 - Gain de temps
 - Facilité
-- Économies
+- Économies (gain du temps passé, gain d'impression, pas d'envoi postal...)
+- Fiabilité (robustesse des algos, on est sûr de l'identité de la personne cible)
+
+### Générer votre paire de clés RSA
+
+Avant de commencer, nous allons générer notre paire de clés RSA (privée & publique) avec OpenSSL 
+(déjà installé sous les distributions Linux, il faut l'installer sous Windows), 
+qui vont nous permettre d'effectuer les différentes actions de signature et de certificats.
+
+```
+openssl genrsa -out key 4096
+```
+
+Ici, on utilise la commande genrsa pour générer une paire de clés RSA.
+On spécifie le nom du fichier de sortie dans la paire de clés générée
+sera enregistrée.
+On spécifie enfin la longueur de la clé RSA en bits, plus la clé est longue plus elle est sécurisée.
+
+Ensuite, on chiffre notre paire de clé
+
+openssl rsa -in key -des3 -out myCAkey.pem //clé privée cryptée
+
+//on définit notre mdp
+
+openssl rsa -in myCAkey.pem -pubout -out myCAPublicKey.pem //partie publique de la clé
+
+On se retrouve avec deux fichiers .pem, l'un contenant la clé privée et l'autre la clé publique.
 
 ### Signer numériquement un document
+
+Pour signer un "document", on calcule d’abord une empreinte de ce document. La commande dgst permet de le faire (dgst = digest, une représentation numérique d’un message calculé par un algorithme de hachage cryptographique ou une fonction).
+```
+openssl dgst -algo -out hash fichier
+```
+
+Signer un document c’est signer son empreinte. 
+Cela revient à chiffrer cette empreinte avec notre clé privée. 
+On utilise l’option -sign de la commande rsautl.
+```
+openssl pkeyutl -sign -in hash -inkey cle -out signature
+```
+Ici, on utilise la commande pkeyutl d'OpenSSL, 
+qui permet d'effectuer diverses opérations sur une clé privée, 
+y compris la signature numérique comme ici.
+Ensuite, plusieurs options sont définies : 
+
+- -sign :  Cette option indique à OpenSSL d'effectuer une opération de signature. 
+           Dans ce contexte, cela signifie qu'elle va utiliser la clé privée spécifiée pour signer les données d'entrée.
+
+
+- -in hash : Spécifie le fichier d'entrée contenant la valeur du hash des données que nous souhaitons signer. 
+             La signature numérique est générée à partir de ce hachage.
+
+- -inkey cle : Spécifie le fichier contenant la clé privée utilisée pour signer les données (clé.
+
+Et pour vérifier : 
+
+```
+openssl pkeyutl -verifyrecover -in signature -pubin -inkey cle -out hash
+```
+
+Essayons de comprendre les options de ces commandes !!!!!! ;)
+
+cle publique de la personne ayant signée
+
 
 ### Vérifier que la signature est celle de l'entité cible
 

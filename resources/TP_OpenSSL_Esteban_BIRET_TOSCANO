@@ -25,7 +25,7 @@ Exercice 4 : Clés RSA du CA
 
 openssl genrsa -out key.pem 2048
 
-openssl rsa -in key.pem -des3 -out myCAkey.pem //clé privée cryptée
+openssl rsa -in key.pem -des3 -out myCAkey.pem //clé privée chiffrée
 writing RSA key
 
 Enter pass phrase:
