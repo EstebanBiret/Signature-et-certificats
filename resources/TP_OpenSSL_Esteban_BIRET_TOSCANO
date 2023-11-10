@@ -1,0 +1,250 @@
+🥽️ Signature :
+
+
+openssl rsautl -verify -pubin -inkey key.pub -in hugo.sig -out hugo_verify.dgt
+
+openssl rsautl -verify -pubin -inkey key.pub -in rimbault.sig -out rimbault_verify.dgt
+
+Une fois ces commandes effectuées, on peut regarder le contenu des fichiers hugo_verify.dgt et rimbault_verifiy.dgt :
+
+On voit que le fichier d'Hugo contient cette ligne : 
+SHA1(hugo.txt)= 2df50f46f210b5b7378f31e0a7a5f061a0c724be
+
+Et que le fichier de Rimbault est vide.
+
+On vérifie ensuite que le hash d'hugo est bien le même que celui du fichier texte :
+ha1sum hugo.txt
+2df50f46f210b5b7378f31e0a7a5f061a0c724be  hugo.txt
+
+On voit donc bien que c'est le même hash, c'est donc le fichier d'Hugo qui a bien été signé.
+
+
+🥽️ Certificats :
+
+Exercice 4 : Clés RSA du CA
+
+openssl genrsa -out key.pem 2048
+
+openssl rsa -in key.pem -des3 -out myCAkey.pem //clé privée cryptée
+writing RSA key
+
+Enter pass phrase:
+Verifying - Enter pass phrase:
+
+openssl rsa -in myCAkey.pem -pubout -out myCAPublicKey.pem //partie publique de la clé
+
+Enter pass phrase for myCAkey.pem:
+writing RSA key
+
+On se retrouve avec deux fichiers .pem, l'un contenant la clé privée et l'autre la clé publique.
+
+
+Exercice 5 : Création du certificat de CA
+
+1) openssl req -new -x509 -key myCAkey.pem -out ca.crt -days 1095
+
+Enter pass phrase for myCAkey.pem:
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [AU]:FR
+State or Province Name (full name) [Some-State]:Blagnac
+Locality Name (eg, city) []:Blagnac
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:CA IUT
+Organizational Unit Name (eg, section) []:INFO
+Common Name (e.g. server FQDN or YOUR name) []:-
+Email Address []:esteban.biret@gmail.com  
+
+2) cat ca.crt
+
+-----BEGIN CERTIFICATE-----
+MIID7TCCAtWgAwIBAgIUdGKE10Bq8zmy2Pdti2NWHBTGUlMwDQYJKoZIhvcNAQEL
+BQAwgYUxCzAJBgNVBAYTAkZSMRAwDgYDVQQIDAdCbGFnbmFjMRAwDgYDVQQHDAdC
+bGFnbmFjMQ8wDQYDVQQKDAZDQSBJVVQxDTALBgNVBAsMBElORk8xCjAIBgNVBAMM
+AS0xJjAkBgkqhkiG9w0BCQEWF2VzdGViYW4uYmlyZXRAZ21haWwuY29tMB4XDTIz
+MDMyMDA3MzUxMVoXDTI2MDMxOTA3MzUxMVowgYUxCzAJBgNVBAYTAkZSMRAwDgYD
+VQQIDAdCbGFnbmFjMRAwDgYDVQQHDAdCbGFnbmFjMQ8wDQYDVQQKDAZDQSBJVVQx
+DTALBgNVBAsMBElORk8xCjAIBgNVBAMMAS0xJjAkBgkqhkiG9w0BCQEWF2VzdGVi
+YW4uYmlyZXRAZ21haWwuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKC
+AQEAu3uJ7rVGvoHqeY+/wV/T3VDuE26SZONzcDKWXYV3GW4OqFb5EuGn0E+i00bm
+LkFiYXmkjHquXR7VXhSzEuR943pXy1q/dsoaAryW6hWoQrMszTk/rYOMfg1mcW44
+zeYuBGP2LPDV6vvi31CcFH57+YWh55XZquAGZTlPdblQ1258SSPAIKHySVPn70ap
+0frgdiiDX8ucRXlo+zvz2FYp9JTqzoQxMOGTBu+1JWHsq5/H9lU+pukSRg4P3/qX
+Ciw7eBdNeZ8d9dfGn41kso78IzycozRdEblWZT7WvruRiWiJRKX2njl0u1QsHWMp
+c+cSLrhldNpuRo381o2mQ7u81wIDAQABo1MwUTAdBgNVHQ4EFgQU63jmOMNgThLh
+HUqQqH0lPzerX3kwHwYDVR0jBBgwFoAU63jmOMNgThLhHUqQqH0lPzerX3kwDwYD
+VR0TAQH/BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAQEAGxX1NDKLI/T1+71vY78a
+MBbtS+Q7RMljdK0cdWlHB7lYloZNlFtLtRA2wv9KQ4ovIATXhVgo0+oVREK+RO+/
+w4b2FtzBRYhPuBgRc9fassu6/7gYA3kyJ3wyo+Kqz4juoFgo4KaZoiSKO6f0+8AT
+t/7+przM3Wt6gWqbh3foCuj3Yw10t71PyfZTPZnxkO8MdDg1D6fhxKxP3IYw5aZ2
+7X5ISI05wGi27FYYV/DP1f3Td7wyi2KDvvoOmu5aJhesyjQXnnLfmOJm2A4c7Ee0
+hpHRBI6PZ0pKYV8bs6YwJ2RIKlTUln6a8EUh/n1KyXLCqwZciOLB2RMjzYNK+FFe
+nw==
+-----END CERTIFICATE-----
+
+
+3) openssl x509 -text -in ca.crt //décodage 
+
+4) 19 mars 2026 --> 3 ans
+
+Validity
+            Not Before: Mar 20 07:35:11 2023 GMT
+            Not After : Mar 19 07:35:11 2026 GMT
+            
+Clé de 2048 bits.
+
+
+Exercice 6 : Vos clés RSA et votre requête
+
+--- Clés RSA ---
+
+1) openssl genrsa -des3 -out mykey.pem 2048
+
+Enter PEM pass phrase:
+Verifying - Enter PEM pass phrase:
+
+2) openssl rsa -in myCAkey.pem -pubout -out myCAPublicKey.pem //partie publique de la clé
+
+Enter pass phrase for mykey.pem:
+writing RSA key
+
+--- Requête ---
+
+1) openssl req -new -key mykey.pem -out myRequete.pem
+
+Enter pass phrase for mykey.pem:
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [AU]:FR
+State or Province Name (full name) [Some-State]:Occitanie
+Locality Name (eg, city) []:Blagnac
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:Mon site web
+Organizational Unit Name (eg, section) []:INFO
+Common Name (e.g. server FQDN or YOUR name) []:-
+Email Address []:esteban.biret@gmail.com
+
+Please enter the following 'extra' attributes
+to be sent with your certificate request
+A challenge password []:Esteban2003*
+An optional company name []:-
+
+2) openssl req  -in myRequete.pem -text -noout
+
+On y voit la version du certificat, les informations saisies lors de la création de celui-ci,
+l'algorithme de cryptage de la clé, la taille de la clé, le modulo, l'exposant (on retrouve encore une fois 65537), le mot de passe en clair, l'algorithme de signature du certificat (ici sha256).
+
+On ne trouve pas la clé privée. 
+
+
+Exercice 7 : Certificat final
+
+1) openssl x509 -days 90 -CAcreateserial -CAserial CAIUT.srl -CA ca.crt -CAkey myCAkey.pem -in myRequete.pem -req -out monCertif.pem
+
+Certificate request self-signature ok
+subject=C = FR, ST = Occitanie, L = Blagnac, O = Mon site web, OU = INFO, CN = -, emailAddress = esteban.biret@gmail.com
+Enter pass phrase for myCAkey.pem: <myPassword>
+
+2) openssl x509 -text -in monCertif.pem
+
+Certificate:
+    Data:
+        Version: 1 (0x0)
+        Serial Number:
+            28:95:61:20:32:bb:cd:e2:0c:24:a2:64:eb:11:2e:11:b7:91:94:93
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C = FR, ST = Blagnac, L = Blagnac, O = CA IUT, OU = INFO, CN = -, emailAddress = esteban.biret@gmail.com
+        Validity
+            Not Before: Mar 20 08:01:34 2023 GMT
+            Not After : Jun 18 08:01:34 2023 GMT
+        Subject: C = FR, ST = Occitanie, L = Blagnac, O = Mon site web, OU = INFO, CN = -, emailAddress = esteban.biret@gmail.com
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (2048 bit)
+                Modulus:
+                    00:a0:47:84:61:d8:61:86:c9:09:38:db:c9:cb:a0:
+                    ce:a3:9e:8d:1c:c9:88:6f:0f:09:70:17:05:10:97:
+                    34:94:1e:12:52:6d:f0:94:fc:6a:0c:da:cc:0f:77:
+                    c6:4b:8c:0b:3e:9a:ce:c0:b0:49:db:c1:b3:23:a3:
+                    d2:71:e4:01:31:d6:ae:e9:07:1b:e0:6e:ca:49:96:
+                    11:21:b2:5b:c9:1d:33:00:8a:38:9a:71:73:bb:c4:
+                    16:62:87:84:e9:14:b8:74:56:ad:83:6a:b2:f6:58:
+                    d1:a0:d3:b6:32:1e:48:4d:1c:e6:14:6c:15:69:c1:
+                    0d:6b:3c:b1:5f:1b:7d:77:28:37:8d:69:e5:cf:6e:
+                    9e:71:19:ff:2b:5d:0d:57:6b:5b:61:15:a7:a4:9a:
+                    4b:b8:51:59:46:34:14:ba:a1:04:c4:07:9c:6f:50:
+                    96:da:df:87:d8:22:ad:ad:04:84:3e:69:91:9b:f8:
+                    cf:89:43:b3:eb:bf:ae:b8:1b:e2:b2:d4:8f:7b:3f:
+                    47:4a:d8:fb:6a:a2:91:02:b6:d1:00:82:d9:eb:b4:
+                    9c:68:9f:62:a9:02:72:5e:44:8a:52:73:6f:f1:8e:
+                    8f:2a:1a:36:a1:73:7e:b0:38:95:3d:e6:9e:41:54:
+                    4a:62:f6:0a:02:b0:17:ff:7c:eb:58:57:b0:b1:e4:
+                    98:89
+                Exponent: 65537 (0x10001)
+    Signature Algorithm: sha256WithRSAEncryption
+    Signature Value:
+        88:00:6d:67:e5:16:58:ab:0b:d3:b1:c6:fb:98:fb:79:89:65:
+        fb:fe:71:9f:e6:a6:1c:a2:81:3f:cb:7e:4a:28:be:1d:7b:c4:
+        d2:75:ca:71:ef:31:86:56:c2:e4:e5:b4:bf:e1:15:e2:96:52:
+        ee:e4:05:f2:64:70:8d:c8:63:50:34:18:32:9a:cd:fa:fc:97:
+        bc:0d:fe:76:11:54:44:f6:ce:26:19:3d:13:a0:0a:2f:e8:c5:
+        e6:92:66:96:e6:0e:63:ec:34:dc:63:78:aa:76:3e:b0:b6:39:
+        bc:69:42:50:1d:47:dd:fe:98:8a:4a:0e:c7:0a:dc:fc:b7:66:
+        7c:2d:cb:02:e5:b7:6b:1c:8a:b5:a4:d3:0a:03:b3:e8:6d:de:
+        50:d8:31:0b:49:bd:e7:e8:b8:30:54:e8:9d:56:57:9a:f0:09:
+        5e:6a:b7:8d:b9:1d:8a:60:10:3c:ef:ec:6c:da:1c:be:d3:d9:
+        90:ba:54:05:a6:a1:83:41:11:aa:f2:d7:6b:b4:ee:a7:a3:01:
+        4c:6c:f7:5d:11:f9:6f:30:bc:26:10:cb:38:cb:f1:46:15:8a:
+        52:d4:8c:72:32:5c:69:6d:3d:a6:64:4c:40:5f:d9:55:60:38:
+        91:3b:9f:05:d4:75:b4:8f:cf:32:b4:11:c6:27:22:f2:84:e9:
+        95:d8:f9:df
+-----BEGIN CERTIFICATE-----
+MIIDmzCCAoMCFCiVYSAyu83iDCSiZOsRLhG3kZSTMA0GCSqGSIb3DQEBCwUAMIGF
+MQswCQYDVQQGEwJGUjEQMA4GA1UECAwHQmxhZ25hYzEQMA4GA1UEBwwHQmxhZ25h
+YzEPMA0GA1UECgwGQ0EgSVVUMQ0wCwYDVQQLDARJTkZPMQowCAYDVQQDDAEtMSYw
+JAYJKoZIhvcNAQkBFhdlc3RlYmFuLmJpcmV0QGdtYWlsLmNvbTAeFw0yMzAzMjAw
+ODAxMzRaFw0yMzA2MTgwODAxMzRaMIGNMQswCQYDVQQGEwJGUjESMBAGA1UECAwJ
+T2NjaXRhbmllMRAwDgYDVQQHDAdCbGFnbmFjMRUwEwYDVQQKDAxNb24gc2l0ZSB3
+ZWIxDTALBgNVBAsMBElORk8xCjAIBgNVBAMMAS0xJjAkBgkqhkiG9w0BCQEWF2Vz
+dGViYW4uYmlyZXRAZ21haWwuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIB
+CgKCAQEAoEeEYdhhhskJONvJy6DOo56NHMmIbw8JcBcFEJc0lB4SUm3wlPxqDNrM
+D3fGS4wLPprOwLBJ28GzI6PSceQBMdau6Qcb4G7KSZYRIbJbyR0zAIo4mnFzu8QW
+YoeE6RS4dFatg2qy9ljRoNO2Mh5ITRzmFGwVacENazyxXxt9dyg3jWnlz26ecRn/
+K10NV2tbYRWnpJpLuFFZRjQUuqEExAecb1CW2t+H2CKtrQSEPmmRm/jPiUOz67+u
+uBvistSPez9HStj7aqKRArbRAILZ67ScaJ9iqQJyXkSKUnNv8Y6PKho2oXN+sDiV
+PeaeQVRKYvYKArAX/3zrWFewseSYiQIDAQABMA0GCSqGSIb3DQEBCwUAA4IBAQCI
+AG1n5RZYqwvTscb7mPt5iWX7/nGf5qYcooE/y35KKL4de8TSdcpx7zGGVsLk5bS/
+4RXillLu5AXyZHCNyGNQNBgyms36/Je8Df52EVRE9s4mGT0ToAov6MXmkmaW5g5j
+7DTcY3iqdj6wtjm8aUJQHUfd/piKSg7HCtz8t2Z8LcsC5bdrHIq1pNMKA7Pobd5Q
+2DELSb3n6LgwVOidVlea8AleareNuR2KYBA87+xs2hy+09mQulQFpqGDQRGq8tdr
+tO6nowFMbPddEflvMLwmEMs4y/FGFYpS1IxyMlxpbT2mZExAX9lVYDiRO58F1HW0
+j88ytBHGJyLyhOmV2Pnf
+-----END CERTIFICATE-----
+
+Issuer du certificat : openssl x509 -noout -in monCertif.pem -issuer
+
+Issuer: C = FR, ST = Blagnac, L = Blagnac, O = CA IUT, OU = INFO, CN = -, emailAddress = esteban.biret@gmail.com
+
+Identité de l'entité certifiée : openssl x509 -noout -in monCertif.pem -subject
+
+Subject: C = FR, ST = Occitanie, L = Blagnac, O = Mon site web, OU = INFO, CN = -, emailAddress = esteban.biret@gmail.com
+
+Période de validité : openssl x509 -noout -in monCertif.pem -dates
+
+notBefore=Mar 20 08:01:34 2023 GMT
+notAfter=Jun 18 08:01:34 2023 GMT
+
+3) openssl verify -CAfile ca.crt monCertif.pem 
+
+monCertif.pem: OK
+
+Le certificat est donc valide. 
+
