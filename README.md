@@ -11,7 +11,7 @@ Pour un site web il s’agit d’un certificat SSL et le standard le plus utilis
 ## Sommaire
 
 - [Signatures](#signatures)
-  - [Signer numériquement un document](#signer-numériquement-un-document)
+  - [Signer numériquement un fichier](#signer-numériquement-un-fichier)
   - [Vérifier que la signature est celle de l'entité cible](#vérifier-que-la-signature-est-celle-de-lentité-cible)
 
 - [Certificats](#certificats)
@@ -62,9 +62,9 @@ openssl rsa -in key_enc -pubout -out key.pub
 
 On se retrouve avec deux fichiers, l'un contenant la clé privée (key_enc) et l'autre la clé publique (key.pub).
 
-### Signer numériquement un document
+### Signer numériquement un fichier
 
-Pour signer un "document", on calcule d’abord une empreinte de ce document. 
+Pour signer un fichier, on calcule d’abord son empreinte. 
 La commande dgst permet de le faire 
 (dgst = digest, une représentation numérique d’un message calculé par un algorithme de hachage cryptographique ou une fonction).
 
@@ -72,10 +72,8 @@ La commande dgst permet de le faire
 openssl dgst -sha256 -out hash file
 ```
 
-Ici, nous avons récupéré le hash du fichier 'file' dans le fichier de sortie nommé 'hash'.
-Signer un document c’est signer son empreinte. 
-Cela revient à chiffrer cette empreinte avec notre clé privée. 
-On utilise l’option -sign de la commande rsautl.
+Ici, nous avons récupéré le hash du fichier `file` dans le fichier de sortie nommé `hash`.
+Nous allons maintenant signer le fichier, c'est-à-dire chiffrer son hash.
 
 ```
 openssl pkeyutl -sign -in hash -inkey key_enc -out signature
@@ -106,8 +104,8 @@ Ensuite, plusieurs options sont définies :
 openssl pkeyutl -verify -sigfile signature -in hash -pubin -inkey key.pub
 ```
 
-Si le document a été bien signé, on aura d'affiché dans le terminal : 'Signature Verified Successfully
-', sinon 'Signature Verification Failure'.
+Si le fichier a été bien signé, on aura d'affiché dans le terminal : `Signature Verified Successfully`, 
+sinon `Signature Verification Failure`.
 
 Voici les options de cette commande : 
 
