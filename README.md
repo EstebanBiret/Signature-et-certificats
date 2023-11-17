@@ -52,6 +52,7 @@ Ensuite, on chiffre notre paire de clé, et on renseigne un mot de passe :
 ```
 openssl rsa -in key -des3 -out key_enc
 ```
+(des3 est un algorithme de chiffrement symétrique par bloc)
 
 On exporte ensuite la partie publique de la clé, en renseignant notre mot de passe : 
 
@@ -66,18 +67,22 @@ On se retrouve avec deux fichiers, l'un contenant la clé privée (key_enc) et l
 Pour signer un "document", on calcule d’abord une empreinte de ce document. 
 La commande dgst permet de le faire 
 (dgst = digest, une représentation numérique d’un message calculé par un algorithme de hachage cryptographique ou une fonction).
+
 ```
-openssl dgst -<algo> -out hash file
+openssl dgst -sha256 -out hash file
 ```
 
+Ici, nous avons récupéré le hash du fichier 'file' dans le fichier de sortie nommé 'hash'.
 Signer un document c’est signer son empreinte. 
 Cela revient à chiffrer cette empreinte avec notre clé privée. 
 On utilise l’option -sign de la commande rsautl.
+
 ```
-openssl pkeyutl -sign -in hash -inkey cle -out signature
+openssl pkeyutl -sign -in hash -inkey key_enc -out signature
 ```
+
 Ici, on utilise la commande pkeyutl d'OpenSSL, 
-qui permet d'effectuer diverses opérations sur une clé privée, 
+qui permet d'effectuer diverses opérations sur une clé privée ou publique, 
 y compris la signature numérique comme ici.
 Ensuite, plusieurs options sont définies : 
 
@@ -88,21 +93,37 @@ Ensuite, plusieurs options sont définies :
 - -in hash : Spécifie le fichier d'entrée contenant la valeur du hash des données que nous souhaitons signer. 
              La signature numérique est générée à partir de ce hachage.
 
-- -inkey cle : Spécifie le fichier contenant la clé privée utilisée pour signer les données (clé.
 
-Et pour vérifier : 
+- -inkey key_enc : Spécifie le fichier contenant la clé privée utilisée pour signer les données (clé.
 
-```
-openssl pkeyutl -verifyrecover -in signature -pubin -inkey cle -out hash
-```
 
-Essayons de comprendre les options de ces commandes !!!!!! ;)
-
-cle publique de la personne ayant signée
+- -out signature : Spécifie le fichier de sortie
 
 
 ### Vérifier que la signature est celle de l'entité cible
 
+```
+openssl pkeyutl -verify -sigfile signature -in hash -pubin -inkey key.pub
+```
+
+Si le document a été bien signé, on aura d'affiché dans le terminal : 'Signature Verified Successfully
+', sinon 'Signature Verification Failure'.
+
+Voici les options de cette commande : 
+
+- -verify : Cette option indique à OpenSSL d'effectuer une opération de vérification de signature.
+
+
+- sigfile signature : Le fichier contenant le hash de la signature.
+
+
+- -in hash : Le hash de la signature calculé auparavant.
+
+
+- -pubin -inkey key.pub : On précise la clé à utiliser, ici la clé publique de la personne ayant signé le fichier.
+-pubin permet de dire à OpenSSL que nous allons renseigner une clé publique, si nous mettons simplement -inkey key.pub, il va vouloir une clé privée.
+
+  
 ## Certificats
 
 ### Génération d'un certificat
