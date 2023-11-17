@@ -133,7 +133,7 @@ Pour un site web il s’agit d’un certificat SSL. Le standard le plus utilisé
 Pour pouvoir générer un certificat d’autorité de certification sans passer par une certification externe, on utilise :
 
 ```
-openssl req -new -x509 -key key_enc -out certificat.crt -days 1095
+openssl req -new -x509 -key key_enc -out CA.crt -days 1095
 ```
 
 - req : Cette sous-commande est utilisée pour générer ou traiter des requêtes de certificat X.509.
@@ -151,7 +151,7 @@ openssl req -new -x509 -key key_enc -out certificat.crt -days 1095
 Nous pouvons visualiser le certificat avec cette commande : 
 
 ```
-openssl x509 -text -in certificat.crt
+openssl x509 -text -in CA.crt
 ```
 Nous devons remplir plusieurs champs, le code de notre pays, le département ou l'état , la ville, le nom de l'organisation,
 la section de l'organisation, notre nom, et notre e-mail.
@@ -163,7 +163,7 @@ Nous avons accès à plusieurs informations, celles renseignées auparavant, et 
 On peut voir la période de validité de notre certificat avec cette commande : 
 
 ```
-openssl x509 -noout -in certificat.crt -dates
+openssl x509 -noout -in CA.crt -dates
 ```
 
 ### Faire certifier sa clé publique
@@ -180,10 +180,10 @@ Ensuite, nous allons contacter une CA qui nous délivrera un certificat signé, 
 Nous allons à présent jouer le rôle de la CA qui voit arriver une requête d’un tiers voulant certifier sa clé publique.
 
 ```
-openssl x509 -days 90 -CA certificat.crt -CAkey key_enc -in request -req -out certificat2.crt
+openssl x509 -days 90 -CA CA.crt -CAkey key_enc -in request -req -out CA.crt
 ```
 
-- -CA certificat.crt : Le certificat de la CA (dans notre cas, c'est le certificat que nous avons généré à la partie précédente).
+- -CA CA.crt : Le certificat de la CA (dans notre cas, c'est le certificat que nous avons généré à la partie précédente).
 
 - -CAkey key_enc : C'est la clé privée de la CA qui a servi à créer le certificat de la CA.
 
@@ -193,10 +193,10 @@ openssl x509 -days 90 -CA certificat.crt -CAkey key_enc -in request -req -out ce
 
 - -out certificat2.crt : Le certificat créé et signé par la CA.
 
-On peut vérifier avec cette commande que `certificat2` a été crée et signé par `certificat`, celui de la CA.
+On peut vérifier avec cette commande que `certificat` a été crée et signé par `CA`, celui de la CA.
 
 ```
-openssl verify -CAfile certificate.crt certificate2.crt
+openssl verify -CAfile CA.crt certificate.crt
 ```
 
 ## Sources
