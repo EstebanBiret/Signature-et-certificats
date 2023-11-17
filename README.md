@@ -47,21 +47,27 @@ On spécifie le nom du fichier de sortie dans la paire de clés générée
 sera enregistrée.
 On spécifie enfin la longueur de la clé RSA en bits, plus la clé est longue plus elle est sécurisée.
 
-Ensuite, on chiffre notre paire de clé
+Ensuite, on chiffre notre paire de clé, et on renseigne un mot de passe : 
 
-openssl rsa -in key -des3 -out myCAkey.pem //clé privée cryptée
+```
+openssl rsa -in key -des3 -out key_enc
+```
 
-//on définit notre mdp
+On exporte ensuite la partie publique de la clé, en renseignant notre mot de passe : 
 
-openssl rsa -in myCAkey.pem -pubout -out myCAPublicKey.pem //partie publique de la clé
+```
+openssl rsa -in key_enc -pubout -out key.pub
+```
 
-On se retrouve avec deux fichiers .pem, l'un contenant la clé privée et l'autre la clé publique.
+On se retrouve avec deux fichiers, l'un contenant la clé privée (key_enc) et l'autre la clé publique (key.pub).
 
 ### Signer numériquement un document
 
-Pour signer un "document", on calcule d’abord une empreinte de ce document. La commande dgst permet de le faire (dgst = digest, une représentation numérique d’un message calculé par un algorithme de hachage cryptographique ou une fonction).
+Pour signer un "document", on calcule d’abord une empreinte de ce document. 
+La commande dgst permet de le faire 
+(dgst = digest, une représentation numérique d’un message calculé par un algorithme de hachage cryptographique ou une fonction).
 ```
-openssl dgst -algo -out hash fichier
+openssl dgst -<algo> -out hash file
 ```
 
 Signer un document c’est signer son empreinte. 
