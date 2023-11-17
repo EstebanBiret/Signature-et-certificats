@@ -112,7 +112,7 @@ Voici les options de cette commande :
 - -verify : Cette option indique à OpenSSL d'effectuer une opération de vérification de signature.
 
 
-- sigfile signature : Le fichier contenant le hash de la signature.
+- -sigfile signature : Le fichier contenant le hash de la signature.
 
 
 - -in hash : Le hash de la signature calculé auparavant.
@@ -123,9 +123,81 @@ Voici les options de cette commande :
 
 ## Certificats
 
-### Génération d'un certificat
+Un certificat peut être vu comme une carte d'identité numérique.
+Il est utilisé principalement pour identifier et authentifier une personne physique ou morale, mais aussi pour chiffrer des échanges.
+Il est signé par un tiers de confiance (une autorité de certification) qui atteste du lien entre l’identité physique (vous, un site web...) et l’entité numérique (votre clé publique, celle du site web...).
+Pour un site web il s’agit d’un certificat SSL. Le standard le plus utilisé pour la création des certificats numériques est le X.509.
+
+### Génération d'un certificat autosigné
+
+Pour pouvoir générer un certificat d’autorité de certification sans passer par une certification externe, on utilise :
+
+```
+openssl req -new -x509 -key key_enc -out certificat.crt -days 1095
+```
+
+- req : Cette sous-commande est utilisée pour générer ou traiter des requêtes de certificat X.509.
+
+- -new: Cette option indique que l'on veut créer une nouvelle requête de certificat.
+
+- -x509: Cette option indique que l'on veut générer un certificat auto-signé plutôt qu'une demande de signature de certificat (CSR).
+
+- -key key_enc : Notre clé privée.
+
+- -out ca.crt : Notre fichier de sortie qui sera le certificat.
+
+- -days 1095: Cette option spécifie la durée de validité du certificat en jours. Dans cet exemple, le certificat sera valide pendant 1095 jours (environ 3 ans).
+
+Nous pouvons visualiser le certificat avec cette commande : 
+
+```
+openssl x509 -text -in certificat.crt
+```
+Nous devons remplir plusieurs champs, le code de notre pays, le département ou l'état , la ville, le nom de l'organisation,
+la section de l'organisation, notre nom, et notre e-mail.
+
+
+Nous avons accès à plusieurs informations, celles renseignées auparavant, et notre clé publique, la période de validité du certificat, l'algorithme de signature utilisé, notre signature en hexa...
+
+
+On peut voir la période de validité de notre certificat avec cette commande : 
+
+```
+openssl x509 -noout -in certificat.crt -dates
+```
 
 ### Faire certifier sa clé publique
+Pour 'monter en grade dans les certifications', nous devons faire certifier notre clé publique par un tiers de confiance. Par exemple, les gros sites web comme Apple, Amazon, Fnac... doivent avoir un certificat plus 'solide' qu'un simple certificat autosigné.
+Dans cet exemple, nous allons créer une demande de certificat, puis la soumettre à une CA (autorité de certification), qui sera dans notre cas le certificat créé dans la partie précédente.
+
+Nous allons dans un premier temps créer une requête de certificat : 
+
+```
+openssl req -new -key key_enc -out request
+```
+
+Ensuite, nous allons contacter une CA qui nous délivrera un certificat signé, après avoir procédé (normalement) à quelques vérifications nous concernant... 
+Nous allons à présent jouer le rôle de la CA qui voit arriver une requête d’un tiers voulant certifier sa clé publique.
+
+```
+openssl x509 -days 90 -CA certificat.crt -CAkey key_enc -in request -req -out certificat2.crt
+```
+
+- -CA certificat.crt : Le certificat de la CA (dans notre cas, c'est le certificat que nous avons généré à la partie précédente).
+
+- -CAkey key_enc : C'est la clé privée de la CA qui a servi à créer le certificat de la CA.
+
+- -in request : C'est la requête de la personne ayant voulu faire certifier sa clé publique
+
+- -req : On indique ici que le fichier en entrée est une demande de certificat (requête).
+
+- -out certificat2.crt : Le certificat créé et signé par la CA.
+
+On peut vérifier avec cette commande que `certificat2` a été crée et signé par `certificat`, celui de la CA.
+
+```
+openssl verify -CAfile certificate.crt certificate2.crt
+```
 
 ## Sources
 
