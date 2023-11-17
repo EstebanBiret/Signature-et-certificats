@@ -208,3 +208,8 @@ https://lig-membres.imag.fr/prost/M1_MEEF_NSI/openssl.html
 http://www.iut-fbleau.fr/sitebp/asr/asr42/openssl/
 
 https://www.openssl.org/docs/man3.0/man1/openssl-dgst.html
+
+
+###  expliquer les parties de la clé privée et publique  (pk ca amrche) = calcul)
+
+### comment a partir d'un mdp, des3 fais une hash ? nombre de bits fixes ?
