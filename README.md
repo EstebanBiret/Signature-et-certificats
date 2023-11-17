@@ -121,7 +121,6 @@ Voici les options de cette commande :
 - -pubin -inkey key.pub : On précise la clé à utiliser, ici la clé publique de la personne ayant signé le fichier.
 -pubin permet de dire à OpenSSL que nous allons renseigner une clé publique, si nous mettons simplement -inkey key.pub, il va vouloir une clé privée.
 
-
 ## Certificats
 
 ### Génération d'un certificat
