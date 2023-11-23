@@ -52,18 +52,6 @@ Calcul de la clé publique `b`, tel que b vérifie cette égalite :
 
 (`a` * `b`) % 9828 = 1 (`b` est l'inverse modulaire de `a` par rapport à 9828 (`phi`)), `b` = 2533 dans notre cas.
 
-
-
-Chiffrage d'une valeur avec la clé privée (`a` et `n`) :
-
-Préparation : dans un message RSA les données à chiffrer, dûment numérisées, on choisit de chiffre en bloc de 4 chiffres pour l'exemple.
-Chiffrement des blocs : on élève chaque nombre de 4 chiffres à la puissance `a` (97), puis on calcule le résultat modulo 10033 (`n`) à partir du nombre obtenu. Par exemple 2118 à la puissance 97 donnera 9253(mod 10033).
-
-Déchiffrage avec la clef publique (`b` et `n`) :
-
-Étant donnée l'autre clef `b` = 2533, chaque bloc est élevé à la puissance 2533 (i.e. multiplié par lui-même 2533 fois !).
-Puis on fait le calcul modulo 10033  : 9253 puissance 2533 = 2118(mod 10033) On retrouve les 2118.
-
 Nous allons désormais le faire à l'aide d'OpenSSL.
 
 -------------
@@ -257,8 +245,4 @@ https://www.openssl.org/docs/man3.0/man1/openssl-dgst.html
 
 http://www.dg77.net/tekno/securite/pubkey.htm
 
-### expliquer les parties de la clé privée et publique  (pk ca amrche) = calcul)
-
 ### comment a partir d'un mdp, des3 fais une hash ? nombre de bits fixes ?
-
-### trouver p et q et modulo à l'aide de la clé privées
