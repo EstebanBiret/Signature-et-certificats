@@ -44,7 +44,7 @@ Choix des facteurs `p` = 79 et `q` = 127 (il faut choisir des nombres premiers a
 
 `n` = `p` * `q` = 79 * 127 = 10033 (`n` = modulo).
 
-(`p`- 1) * (`q`- 1) = 78 * 126 = 9828 (`phi`)
+(`p` - 1) * (`q` - 1) = 78 * 126 = 9828 (`phi`)
 
 Choix d'un nombre dont le PGCD avec 9828 (`phi`) soit égal à 1 (en somme, un nombre premier avec `phi`) : parmi les valeurs possibles on choisit (par exemple) `a` = 97 (clé privée).
 
@@ -268,5 +268,3 @@ http://www.iut-fbleau.fr/sitebp/asr/asr42/openssl/
 Documentation de OpenSSL : https://www.openssl.org/docs/man3.0/man1/openssl-dgst.html
 
 http://www.dg77.net/tekno/securite/pubkey.htm
-
-### comment a partir d'un mdp, des3 fais une hash ? nombre de bits fixes ?
