@@ -88,6 +88,12 @@ openssl rsa -in key -des3 -out key_enc
 ```
 (des3 est un algorithme de chiffrement symétrique par bloc)
 
+Plus de précision :
+- "des3" -> DES-EDE3-CBC
+- DES = Data Encryption Standard
+- EDE3 = Encryption Decryption Encryption with 3 keys
+- CBC = Cipher Block Chaining
+
 On exporte ensuite la partie publique de la clé, en renseignant notre mot de passe : 
 
 ```
@@ -241,7 +247,7 @@ https://lig-membres.imag.fr/prost/M1_MEEF_NSI/openssl.html
 
 http://www.iut-fbleau.fr/sitebp/asr/asr42/openssl/
 
-https://www.openssl.org/docs/man3.0/man1/openssl-dgst.html
+Documentation de OpenSSL : https://www.openssl.org/docs/man3.0/man1/openssl-dgst.html
 
 http://www.dg77.net/tekno/securite/pubkey.htm
 
