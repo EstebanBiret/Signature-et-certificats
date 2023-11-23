@@ -11,11 +11,12 @@ Pour un site web il s’agit d’un certificat SSL et le standard le plus utilis
 ## Sommaire
 
 - [Signatures](#signatures)
+  - [Générer votre paire de clés RSA](#générer-votre-paire-de-clés-rsa)
   - [Signer numériquement un fichier](#signer-numériquement-un-fichier)
   - [Vérifier que la signature est celle de l'entité cible](#vérifier-que-la-signature-est-celle-de-lentité-cible)
 
 - [Certificats](#certificats)
-  - [Généreration d'un certificat](#génération-dun-certificat)
+  - [Généreration d'un certificat autosigné](#génération-dun-certificat-autosigné)
   - [Faire certifier sa clé publique](#faire-certifier-sa-clé-publique)
   
 - [Sources](#sources)
