@@ -44,7 +44,7 @@ Choix des facteurs `p` = 79 et `q` = 127 (il faut choisir des nombres premiers a
 
 `n` = `p` * `q` = 79 * 127 = 10033 (`n` = modulo).
 
-(`p`-1) * (`q`-1) = 78 * 126 = 9828 (`phi`)
+(`p`- 1) * (`q`- 1) = 78 * 126 = 9828 (`phi`)
 
 Choix d'un nombre dont le PGCD avec 9828 (`phi`) soit égal à 1 (en somme, un nombre premier avec `phi`) : parmi les valeurs possibles on choisit (par exemple) `a` = 97 (clé privée).
 
@@ -86,13 +86,31 @@ Ensuite, on chiffre notre paire de clé, et on renseigne un mot de passe :
 ```
 openssl rsa -in key -des3 -out key_enc
 ```
-(des3 est un algorithme de chiffrement symétrique par bloc)
 
 Plus de précision :
 - "des3" -> DES-EDE3-CBC
 - DES = Data Encryption Standard
 - EDE3 = Encryption Decryption Encryption with 3 keys
 - CBC = Cipher Block Chaining
+
+Fonctionnement de des3 :
+
+![des3](resources/des3.webp)
+
+DES-EDE3-CBC (des3) est un algorithme de chiffrement symétrique par bloc, voici comment OpenSSL génère un hash du mot de passe : 
+
+- Choix d'un Sel (Salt) : OpenSSL génère un sel aléatoire pour renforcer la sécurité du processus. Le sel est utilisé pour rendre le processus de chiffrement aléatoire, ce qui signifie que si on chiffre la même clé privée avec le même mot de passe plusieurs fois, on obtiendra des résultats différents en raison du sel.
+
+
+- Chiffrement de la Clé Privée : OpenSSL utilise le mot de passe (et éventuellement le sel) pour dériver une clé à partir du mot de passe en utilisant un algorithme de dérivation de clé. Ensuite, cette clé dérivée est utilisée pour chiffrer la clé privée RSA à l'aide de DES3.
+
+
+- La clé dérivée elle-même n'est pas directement le hash du mot de passe, mais plutôt une clé symétrique qui est utilisée pour chiffrer et déchiffrer la clé privée.
+
+
+##### Le choix de l'algorithme de dérivation de clé et la gestion du sel sont importants pour la sécurité de cette opération. OpenSSL utilise généralement une forme de dérivation de clé sécurisée, telle que PBKDF2, pour rendre le processus résistant aux attaques par force brute. 
+
+------------------------
 
 On exporte ensuite la partie publique de la clé, en renseignant notre mot de passe : 
 
