@@ -33,6 +33,8 @@ Elle présente plusieurs avantages à la signature manuscrite :
 - Économies (gain du temps passé, gain d'impression, pas d'envoi postal...)
 - Fiabilité (robustesse des algos, on est sûr de l'identité de la personne cible)
 
+Pour signer un document, on va chiffre un hash avec sa clé privée, et la personne pourra déchiffrer avec la clé publique : 
+
 ### Générer votre paire de clés RSA
 
 #### Comment ça marche ?
@@ -137,7 +139,7 @@ openssl dgst -sha256 -out hash file
 ```
 
 Ici, nous avons récupéré le hash du fichier `file` dans le fichier de sortie nommé `hash`.
-Nous allons maintenant signer le fichier, c'est-à-dire chiffrer son hash.
+Nous allons maintenant signer le fichier.
 
 ```
 openssl pkeyutl -sign -in hash -inkey key_enc -out signature
@@ -279,4 +281,4 @@ http://www.dg77.net/tekno/securite/pubkey.htm
 
 #### faire serveur prototype et tester les certificat
 
-#### et expliquer amazon et autre, hierarchie
+#### faire serveur prototype et tester les certificat
