@@ -33,7 +33,7 @@ Elle présente plusieurs avantages à la signature manuscrite :
 - Économies (gain du temps passé, gain d'impression, pas d'envoi postal...)
 - Fiabilité (robustesse des algos, on est sûr de l'identité de la personne cible)
 
-Pour signer un document, on va chiffre un hash avec sa clé privée, et la personne pourra déchiffrer avec la clé publique : 
+Pour signer un document, il nous faut générer une paire de clés RSA : 
 
 ### Générer votre paire de clés RSA
 
