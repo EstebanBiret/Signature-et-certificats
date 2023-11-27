@@ -83,6 +83,10 @@ En regardant les détails de notre clé privée (openssl rsa -text -in `key`), o
 
 `b` (publicExponent) = 65537
 
+L'exposant public est 65537 pour des raisons historique, car les premières implémentations de RSA n'utilisaient pas
+correctement le "padding" (rembourrage) pour assurer la sécurité avec un petit exposant, et un trop grand exposant demandait trop de
+performances pour une sécurité équivalente.
+
 Ensuite, on chiffre notre paire de clé, et on renseigne un mot de passe : 
 
 ```
@@ -272,10 +276,6 @@ Documentation de OpenSSL : https://www.openssl.org/docs/man3.0/man1/openssl-dgst
 http://www.dg77.net/tekno/securite/pubkey.htm
 
 # TODO
-
-#### chiffre un hash (du fichier) avec sa clé privée, vérifiable avec sa clé publique
-
-#### expliquer 65537 (car pas trop petit ni trop grand pour les perfs)
 
 #### faire serveur prototype et tester les certificat
 
