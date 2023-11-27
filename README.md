@@ -232,6 +232,17 @@ On peut voir la période de validité de notre certificat avec cette commande :
 openssl x509 -noout -in CA.crt -dates
 ```
 
+Nous avons ici créé un serveur web nginx en local, et nous lui avons attribué notre certificat créé précédemment (CA.crt). Voici les lignes ajoutées dans le fichier nginx.conf, dans la clause http :
+
+```
+server {
+    listen 443 ssl;
+    ssl_certificate /etc/ssl/CA.crt;
+    ssl_certificate_key /etc/ssl/key;
+}
+```
+![nginx_certif](resources/nginx.png)
+
 ### Faire certifier sa clé publique
 Pour 'monter en grade dans les certifications', nous devons faire certifier notre clé publique par un tiers de confiance. Par exemple, les gros sites web comme Apple, Amazon, Fnac... doivent avoir un certificat plus 'solide' qu'un simple certificat autosigné.
 Dans cet exemple, nous allons créer une demande de certificat, puis la soumettre à une CA (autorité de certification), qui sera dans notre cas le certificat créé dans la partie précédente.
