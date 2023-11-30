@@ -145,11 +145,11 @@ On se retrouve avec deux fichiers, l'un contenant la clé privée (key_enc) et l
 
 ### Signer numériquement un fichier
 
-Pour garantir l'authenticité d'un fichier, par exemple lorqu'on échange un document avec un tiers, on peut créer une
-signature numérique de ce fichier et en combinaison de notre clé publique, le destinataire pourra vérifié que c'est bien
-nous qui avons signé le fichier, ou à l'inverse, que c'est un intru.
+Pour garantir l'authenticité d'un fichier, par exemple lorsqu'on échange un document avec un tiers, on peut créer une
+signature numérique de ce fichier et en combinaison de notre clé publique, le destinataire pourra vérifier que c'est bien
+nous qui avons signé le fichier, ou à l'inverse, que c'est un intrus.
 
-Par exemple, lorsqu'on veut télécharger Linux Mint, on a en plus de l'ISO, deux autres fichiers, une sommes de contrôle
+Par exemple, lorsqu'on veut télécharger Linux Mint, on a en plus de l'ISO, deux autres fichiers, une somme de contrôle
 SHA256 et une signature GPG, l'un permet de vérifier l'intégrité et l'autre l'authenticité avec leur clé publique.
 
 Nous allons donc voir comment signer un fichier, on commence pas calculer son empreinte. 
