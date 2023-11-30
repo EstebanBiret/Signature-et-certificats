@@ -128,6 +128,11 @@ DES-EDE3-CBC (des3) est un algorithme de chiffrement symétrique par bloc, voici
 
 ##### Le choix de l'algorithme de dérivation de clé et la gestion du sel sont importants pour la sécurité de cette opération. OpenSSL utilise généralement une forme de dérivation de clé sécurisée, telle que PBKDF2, pour rendre le processus résistant aux attaques par force brute. 
 
+PBKDF2, c'est quoi ?
+
+PBKFD2 (Password-Based Key Derivation Function 2), est une fonction de dérivation de clé, appartenant à la famille des normes Public Key Cryptographic Standards, plus précisément PKCS #5 v2.0. Elle succède au PBKDF1, qui pouvait produire des clés n'allant que jusqu'à 160 bits (PBKDF2 permet de ne pas avoir de limite de taille).
+Cette norme est aujourd'hui utilisée pour le hachage de mot de passe (associé à des fonctions comme SHA-256) ou la génération de clé de chiffrement de données.
+
 ------------------------
 
 On exporte ensuite la partie publique de la clé, en renseignant notre mot de passe : 
