@@ -314,9 +314,3 @@ http://www.iut-fbleau.fr/sitebp/asr/asr42/openssl/
 Documentation de OpenSSL : https://www.openssl.org/docs/man3.0/man1/openssl-dgst.html
 
 http://www.dg77.net/tekno/securite/pubkey.htm
-
-# TODO
-
-#### faire serveur prototype et tester les certificat
-
-#### faire serveur prototype et tester les certificat
