@@ -95,7 +95,11 @@ L'exposant public est 65537 pour des raisons historique, car les premières impl
 correctement le "padding" (rembourrage) pour assurer la sécurité avec un petit exposant, et un trop grand exposant demandait trop de
 performances pour une sécurité équivalente.
 
-Ensuite, on chiffre notre paire de clé, et on renseigne un mot de passe : 
+Ensuite, on chiffre notre paire de clé, et on renseigne un mot de passe. 
+
+Pourquoi chiffrer notre paire de clés ?
+
+Pour des raisons de sécurité. Si une personne malveillante (Rémy ou Cédric par exemple) accédait à notre PC, il ne pourrait pas accèder à notre clé privée, car protégé par un mot de passe.
 
 ```
 openssl rsa -in key -des3 -out key_enc
