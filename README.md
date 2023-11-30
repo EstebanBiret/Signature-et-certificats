@@ -99,7 +99,7 @@ Ensuite, on chiffre notre paire de clé, et on renseigne un mot de passe.
 
 Pourquoi chiffrer notre paire de clés ?
 
-Pour des raisons de sécurité. Si une personne malveillante (Rémy ou Cédric par exemple) accédait à notre PC, il ne pourrait pas accèder à notre clé privée, car protégé par un mot de passe.
+Pour des raisons de sécurité. Si une personne malveillante (Rémy ou Cédric par exemple) accédait à notre PC, il ne pourrait pas directement accèder à notre clé privée, car elle est protégée par un mot de passe.
 
 ```
 openssl rsa -in key -des3 -out key_enc
@@ -145,7 +145,14 @@ On se retrouve avec deux fichiers, l'un contenant la clé privée (key_enc) et l
 
 ### Signer numériquement un fichier
 
-Pour signer un fichier, on calcule d’abord son empreinte. 
+Pour garantir l'authenticité d'un fichier, par exemple lorqu'on échange un document avec un tiers, on peut créer une
+signature numérique de ce fichier et en combinaison de notre clé publique, le destinataire pourra vérifié que c'est bien
+nous qui avons signé le fichier, ou à l'inverse, que c'est un intru.
+
+Par exemple, lorsqu'on veut télécharger Linux Mint, on a en plus de l'ISO, deux autres fichiers, une sommes de contrôle
+SHA256 et une signature GPG, l'un permet de vérifier l'intégrité et l'autre l'authenticité avec leur clé publique.
+
+Nous allons donc voir comment signer un fichier, on commence pas calculer son empreinte. 
 La commande dgst permet de le faire (dgst = digest, une représentation numérique d’un message calculé par un algorithme de hachage cryptographique ou une fonction).
 
 ```
