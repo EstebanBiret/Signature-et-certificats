@@ -146,14 +146,18 @@ On se retrouve avec deux fichiers, l'un contenant la clé privée (key_enc) et l
 ### Signer numériquement un fichier
 
 Pour signer un fichier, on calcule d’abord son empreinte. 
-La commande dgst permet de le faire 
-(dgst = digest, une représentation numérique d’un message calculé par un algorithme de hachage cryptographique ou une fonction).
+La commande dgst permet de le faire (dgst = digest, une représentation numérique d’un message calculé par un algorithme de hachage cryptographique ou une fonction).
 
 ```
 openssl dgst -sha256 -out hash file
 ```
 
 Ici, nous avons récupéré le hash du fichier `file` dans le fichier de sortie nommé `hash`.
+
+[Fichier originel](resources/file)
+
+[Le hash de ce fichier](resources/hash)
+
 Nous allons maintenant signer le fichier.
 
 ```
@@ -178,6 +182,7 @@ Ensuite, plusieurs options sont définies :
 
 - -out signature : Spécifie le fichier de sortie
 
+[Signature du fichier](resources/signature)
 
 ### Vérifier que la signature est celle de l'entité cible
 
