@@ -1,5 +1,9 @@
 # Signature-et-certificats
 
+<div id="gif" style="display: flex;">
+  <img src="https://media.giphy.com/media/rMS1sUPhv95f2/giphy.gif">
+  <img src="https://media.giphy.com/media/FDZdBGmyXX7wpHduym/giphy-downsized-large.gif" style="width:265px;">
+</div>
 Ce dépôt est la trace de nos recherches sur les signatures et certificats en cryptographie.
 
 ## Sujet
