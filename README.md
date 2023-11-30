@@ -37,14 +37,16 @@ Elle présente plusieurs avantages à la signature manuscrite :
 - Économies (gain du temps passé, gain d'impression, pas d'envoi postal...)
 - Fiabilité (robustesse des algos, on est sûr de l'identité de la personne cible)
 
-Pour signer un document, il nous faut générer une paire de clés RSA : 
+Pour signer un document et vérifier des signatures, il nous faut utiliser un algo de chiffrement asymétrique (RSA, GPG, DSA, ECDSA, EdDSA). Nous allons ici utiliser RSA (Rivest-Shamir-Adleman).
+
+Nous allons donc dans un permier temps générer une paire de clés RSA (privée & publique) : 
 
 ### Générer votre paire de clés RSA
 
 #### Comment ça marche ?
 
 RSA, illustration très simplifiée :
-Tout d'abord calcul de la paire de clefs :
+Tout d'abord calcul de la paire de clés :
 
 Choix des facteurs `p` = 79 et `q` = 127 (il faut choisir des nombres premiers assez grands, pour l'exemple ils sont très petits)
 
