@@ -230,13 +230,15 @@ Pour un site web il s’agit d’un certificat TLS/SSL. Le standard le plus util
 
 ### Génération d'un certificat autosigné
 
-Normalement on ne signe pas sois-même son certificat, car si tout le monde faisait ça il faudrai faire confiance à tout
-le monde ce qui rivient à faire confiance à personne. Donc on créer une requête de certification qui servira à créer un
-certificat par une  "autorités de certification" (CA en angais), auquel tout le monde fait confiance et dont leurs
+Normalement, on ne signe pas soi-même son certificat, car si tout le monde faisait ça il faudrait faire confiance à tout
+le monde, ce qui revient à ne faire confiance à personne. 
+
+Donc on crée une requête de certification qui servira à créer un
+certificat par une  "autorité de certification" (CA en anglais), auquelle tout le monde fait confiance et dont leurs
 cetificats d'autorité son implémentés dans les navigateurs web, donc un certificat signé par une de ces CA sera
 vérifiable facilement.
 
-Dans notre cas nous allons donc faire un certificat autosigné car on ne fait que des exemples et pas de projets sérieux
+Dans notre cas nous allons donc faire un certificat autosigné, car on ne fait que des exemples et pas de projets sérieux
 donc le certificat n'a pas besoin d'être de confiance.
 
 Pour pouvoir générer un certificat autosigné, on utilise :
@@ -319,6 +321,26 @@ On peut vérifier avec cette commande que `certificat` a été crée et signé p
 openssl verify -CAfile CA.crt certificate.crt
 ```
 
+Notre certificat a été signé par Let's Encrypt. Mais dis-donc Jamy, qu'est ce que Let's Encrypt ?
+
+![jamy](resources/jamy.webp)
+
+Let's Encrypt est une autorité de certification à but non lucratif fournissant des certificats gratuits X.509 pour le protocole cryptographique TLS au moyen d'un processus 
+automatisé destiné à se passer du processus complexe actuel impliquant la création manuelle, la validation, la signature, 
+l'installation et le renouvellement des certificats pour la sécurisation des sites internet.
+
+Let's Encrypt est propriétaire d’un certificat racine RSA stocké sur un module matériel de sécurité qui n'est 
+pas utilisé directement. Ce certificat est destiné à être remplacé ultérieurement par un certificat ECDSA qui sera 
+utilisé pour signer deux certificats intermédiaires signés par l’autorité de certification IdenTrust (en). 
+L’un d’entre eux sera utilisé pour signer les certificats délivrés, l’autre comme certificat de secours en cas de 
+problème avec le premier. Les certificats Let's Encrypt peuvent normalement être validés et acceptés par défaut car 
+le certificat IdenTrust sera pré-installé sur les navigateurs internet les plus connus. À long terme, il est prévu 
+que les certificats Let's Encrypt soient pré-installés directement dans les applications.
+ 
+Quelques autres CA : 
+
+
+
 ## Sources
 
 TP de Rémi Boulle : [TP9-TP10-signature-certificat-openSSL-prof.html](resources/TP9-TP10-signature-certificat-openSSL-prof.html)
@@ -329,4 +351,8 @@ http://www.iut-fbleau.fr/sitebp/asr/asr42/openssl/
 
 Documentation de OpenSSL : https://www.openssl.org/docs/man3.0/man1/openssl-dgst.html
 
-http://www.dg77.net/tekno/securite/pubkey.htm
+http://www.dg77.net/tekno/securite/pubkey.html
+
+Autorités de certification : https://www.sslmarket.fr/ssl/selon-l-autorite-de-certification/
+
+
