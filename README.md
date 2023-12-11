@@ -337,7 +337,21 @@ problème avec le premier. Les certificats Let's Encrypt peuvent normalement êt
 le certificat IdenTrust sera pré-installé sur les navigateurs internet les plus connus. À long terme, il est prévu 
 que les certificats Let's Encrypt soient pré-installés directement dans les applications.
  
-Quelques autres CA : 
+Quelques autres CA (prix annuel en dollars) : 
+
+| Nom             | Utilisation | Prix DV | Prix OV | Prix EV | Source |
+|-----------------|-------------|---------|---------|---------|--------|
+| IdenTrust       | 38.5%       |         | $242    | $363    |        |
+| DigiCert Group  | 13.1%       | ?       | $$268   | $430    |        |
+| Sectigo         | 12.1%       | $99.00  | $179    | $249    |        |
+| GlobalSign      | 16.1%       | $249    | $349    | $599    |        |
+| Let's Encrypt   | 5.8%        | Gratuit | Gratuit | Gratuit |        |  
+| GoDaddy Group   | 4.8%        | $99.99  | $169.99 | $249.99 |        | 
+
+
+NB = expliquer dv ov ev
+
+Pourquoi utiliser des CA payantes ?
 
 
 
@@ -353,6 +367,6 @@ Documentation de OpenSSL : https://www.openssl.org/docs/man3.0/man1/openssl-dgst
 
 http://www.dg77.net/tekno/securite/pubkey.html
 
-Autorités de certification : https://www.sslmarket.fr/ssl/selon-l-autorite-de-certification/
+Autorités de certification : https://en.wikipedia.org/wiki/Certificate_authority
 
 
