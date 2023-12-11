@@ -257,14 +257,14 @@ openssl req -new -x509 -key key_enc -out CA.crt -days 1095
 
 - -days 1095: Cette option spécifie la durée de validité du certificat en jours. Dans cet exemple, le certificat sera valide pendant 1095 jours (environ 3 ans).
 
-Nous pouvons visualiser le certificat avec cette commande : 
+Nous devons remplir plusieurs champs, le code de notre pays, le département ou l'état , la ville, le nom de l'organisation,
+la section de l'organisation, notre nom, et notre e-mail.
+
+Nous pouvons visualiser le certificat avec cette commande :
 
 ```
 openssl x509 -text -in CA.crt
 ```
-Nous devons remplir plusieurs champs, le code de notre pays, le département ou l'état , la ville, le nom de l'organisation,
-la section de l'organisation, notre nom, et notre e-mail.
-
 
 Nous avons accès à plusieurs informations, celles renseignées auparavant, et notre clé publique, la période de validité du certificat, l'algorithme de signature utilisé, notre signature en hexa...
 
