@@ -224,13 +224,22 @@ Voici les options de cette commande :
 ## Certificats
 
 Un certificat peut être vu comme une carte d'identité numérique.
-Il est utilisé principalement pour identifier et authentifier une personne physique ou morale, mais aussi pour chiffrer des échanges.
+Il est utilisé principalement pour identifier et authentifier une personne physique ou morale, mais surtout pour chiffrer ses échanges entre navigateurs et sites web.
 Il est signé par un tiers de confiance (une autorité de certification) qui atteste du lien entre l’identité physique (vous, un site web...) et l’entité numérique (votre clé publique, celle du site web...).
-Pour un site web il s’agit d’un certificat SSL. Le standard le plus utilisé pour la création des certificats numériques est le X.509.
+Pour un site web il s’agit d’un certificat TLS/SSL. Le standard le plus utilisé pour la création des certificats numériques est le X.509.
 
 ### Génération d'un certificat autosigné
 
-Pour pouvoir générer un certificat d’autorité de certification sans passer par une certification externe, on utilise :
+Normalement on ne signe pas sois-même son certificat, car si tout le monde faisait ça il faudrai faire confiance à tout
+le monde ce qui rivient à faire confiance à personne. Donc on créer une requête de certification qui servira à créer un
+certificat par une  "autorités de certification" (CA en angais), auquel tout le monde fait confiance et dont leurs
+cetificats d'autorité son implémentés dans les navigateurs web, donc un certificat signé par une de ces CA sera
+vérifiable facilement.
+
+Dans notre cas nous allons donc faire un certificat autosigné car on ne fait que des exemples et pas de projets sérieux
+donc le certificat n'a pas besoin d'être de confiance.
+
+Pour pouvoir générer un certificat autosigné, on utilise :
 
 ```
 openssl req -new -x509 -key key_enc -out CA.crt -days 1095
