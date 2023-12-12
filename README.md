@@ -339,20 +339,30 @@ que les certificats Let's Encrypt soient pré-installés directement dans les ap
  
 Quelques autres CA (prix annuel en dollars) : 
 
-| Nom             | Utilisation | Prix DV | Prix OV | Prix EV | Source |
-|-----------------|-------------|---------|---------|---------|--------|
-| IdenTrust       | 38.5%       |         | $242    | $363    |        |
-| DigiCert Group  | 13.1%       | ?       | $$268   | $430    |        |
-| Sectigo         | 12.1%       | $99.00  | $179    | $249    |        |
-| GlobalSign      | 16.1%       | $249    | $349    | $599    |        |
-| Let's Encrypt   | 5.8%        | Gratuit | Gratuit | Gratuit |        |  
-| GoDaddy Group   | 4.8%        | $99.99  | $169.99 | $249.99 |        | 
+| Nom             | Utilisation | Prix DV | Prix OV | Prix EV | Source                                                           |
+|-----------------|-------------|---------|---------|---------|------------------------------------------------------------------|
+| IdenTrust       | 38.5%       | ?       | $242    | $363    | [Lien](https://www.identrust.com/)                               |
+| DigiCert Group  | 13.1%       | ?       | $$268   | $430    | [Lien](https://www.digicert.com/fr)                               |
+| Sectigo         | 12.1%       | $99.00  | $179    | $249    | [Lien](https://www.sectigo.com/ssl-certificates-tls)              |
+| GlobalSign      | 16.1%       | $249    | $349    | $599    | [Lien](https://shop.globalsign.com/en/ssl)                        |
+| Let's Encrypt   | 5.8%        | Gratuit | Gratuit | Gratuit | [Lien](https://letsencrypt.org/fr/)                               |  
+| GoDaddy Group   | 4.8%        | $99.99  | $169.99 | $249.99 | [Lien](https://www.godaddy.com/fr-ca/securite-web/certificat-ssl) | 
 
+Mais à quoi correspond DV, OV et EV ?
 
-NB = expliquer dv ov ev
+Il existe trois types de certificats SSL : les certificats à validation de domaine (DV), 
+les certificats à validation d'organisation (OV) et les certificats à validation étendue (EV). 
+Les niveaux de chiffrement sont les mêmes pour chaque type de certificat. 
+Ce qui diffère, ce sont les processus d'audit et de vérification nécessaires pour obtenir le certificat. Plus il y a de vérifications, plus le certificat sera cher et crédible pour l'entreprise.
+
+- DV : L'AC vérifie que l'organisation en question possède le droit exclusif d'utilisation du nom de domaine pour lequel elle souhaite recevoir le certificat. L'identité de l’entreprise ne fait l’objet d’aucune vérification particulière.
+
+- OV : L'AC vérifie que l'organisation en question possède le droit exclusif d'utilisation du nom de domaine pour lequel elle souhaite recevoir le certificat et soumet celle-ci à certaines vérifications.
+
+- EV  : L'AC vérifie que l'organisation en question possède le droit exclusif d'utilisation du nom de domaine et soumet celle-ci à un audit très approfondi.
+
 
 Pourquoi utiliser des CA payantes ?
-
 
 
 ## Sources
