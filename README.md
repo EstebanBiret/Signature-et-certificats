@@ -344,16 +344,16 @@ Quelques autres CA et leurs prix annuel :
 
 Mais à quoi correspond DV, OV et EV ?
 
-Il existe trois types de certificats SSL : les certificats à validation de domaine (DV), 
+Il existe trois types de certification : les certificats à validation de domaine (DV), 
 les certificats à validation d'organisation (OV) et les certificats à validation étendue (EV). 
 Les niveaux de chiffrement sont les mêmes pour chaque type de certificat. 
 Ce qui diffère, ce sont les processus d'audit et de vérification nécessaires pour obtenir le certificat. Plus il y a de vérifications, plus le certificat sera cher et crédible pour l'entreprise.
 
-- DV : L'AC vérifie que l'organisation en question possède le droit exclusif d'utilisation du nom de domaine pour lequel elle souhaite recevoir le certificat. L'identité de l’entreprise ne fait l’objet d’aucune vérification particulière.
+- DV : l'AC vérifie que l'organisation en question possède le droit exclusif d'utilisation du nom de domaine pour lequel elle souhaite recevoir le certificat. L'identité de l’entreprise ne fait l’objet d’aucune vérification particulière.
 
-- OV : L'AC vérifie que l'organisation en question possède le droit exclusif d'utilisation du nom de domaine pour lequel elle souhaite recevoir le certificat et soumet celle-ci à certaines vérifications.
+- OV : l'AC vérifie que l'organisation en question possède le droit exclusif d'utilisation du nom de domaine pour lequel elle souhaite recevoir le certificat et soumet celle-ci à certaines vérifications.
 
-- EV  : L'AC vérifie que l'organisation en question possède le droit exclusif d'utilisation du nom de domaine et soumet celle-ci à un audit très approfondi.
+- EV : l'AC vérifie que l'organisation en question possède le droit exclusif d'utilisation du nom de domaine et soumet celle-ci à un audit très approfondi.
 
 
 Pourquoi utiliser des CA payantes ?
