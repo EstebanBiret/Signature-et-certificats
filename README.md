@@ -358,6 +358,10 @@ Ce qui diffère, ce sont les processus d'audit et de vérification nécessaires 
 
 Pourquoi utiliser des CA payantes ?
 
+Une des raisons principale et la crédibilisation de son entreprise auprès du public, car un EV demande beaucoup de
+détails sur l'entité
+"car ils renforcent leur crédibilité en montrant aux consommateurs avertis qu’une transaction potentielle est effectuée
+avec un destinataire légitime et que le site Web prend au sérieux la protection des données de ses clients."
 
 ## Sources
 
