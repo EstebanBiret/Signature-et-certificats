@@ -344,7 +344,7 @@ Quelques autres CA et leurs prix annuel :
 
 Mais à quoi correspond DV, OV et EV ?
 
-Il existe trois types de certification : les certificats à validation de domaine (DV), 
+Il existe trois types de certifications : les certificats à validation de domaine (DV), 
 les certificats à validation d'organisation (OV) et les certificats à validation étendue (EV). 
 Les niveaux de chiffrement sont les mêmes pour chaque type de certificat. 
 Ce qui diffère, ce sont les processus d'audit et de vérification nécessaires pour obtenir le certificat. Plus il y a de vérifications, plus le certificat sera cher et crédible pour l'entreprise.
