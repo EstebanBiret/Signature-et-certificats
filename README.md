@@ -345,7 +345,7 @@ Quelques autres CA (prix annuel en dollars) :
 | DigiCert Group  | 13.1%       | ?       | $$268   | $430    | [Lien](https://www.digicert.com/fr)                               |
 | Sectigo         | 12.1%       | $99.00  | $179    | $249    | [Lien](https://www.sectigo.com/ssl-certificates-tls)              |
 | GlobalSign      | 16.1%       | $249    | $349    | $599    | [Lien](https://shop.globalsign.com/en/ssl)                        |
-| Let's Encrypt   | 5.8%        | Gratuit | Gratuit | Gratuit | [Lien](https://letsencrypt.org/fr/)                               |  
+| Let's Encrypt   | 5.8%        | Gratuit | -       | -       | [Lien](https://letsencrypt.org/fr/)                               |  
 | GoDaddy Group   | 4.8%        | $99.99  | $169.99 | $249.99 | [Lien](https://www.godaddy.com/fr-ca/securite-web/certificat-ssl) | 
 
 Mais à quoi correspond DV, OV et EV ?
