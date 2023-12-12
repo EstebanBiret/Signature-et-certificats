@@ -326,27 +326,21 @@ Notre certificat a été signé par Let's Encrypt. Mais dis-donc Jamy, qu'est ce
 ![jamy](resources/jamy.webp)
 
 Let's Encrypt est une autorité de certification à but non lucratif fournissant des certificats gratuits X.509 pour le protocole cryptographique TLS au moyen d'un processus 
-automatisé destiné à se passer du processus complexe actuel impliquant la création manuelle, la validation, la signature, 
+automatisé destiné à se passer du processus complexe impliquant la création manuelle, la validation, la signature, 
 l'installation et le renouvellement des certificats pour la sécurisation des sites internet.
+C'est l'une des autorité de certifications les plus connue car ses services sont gratuits et [open source](https://github.com/letsencrypt/boulder),
+elle fonctionne sur le modèle des donations.
 
-Let's Encrypt est propriétaire d’un certificat racine RSA stocké sur un module matériel de sécurité qui n'est 
-pas utilisé directement. Ce certificat est destiné à être remplacé ultérieurement par un certificat ECDSA qui sera 
-utilisé pour signer deux certificats intermédiaires signés par l’autorité de certification IdenTrust (en). 
-L’un d’entre eux sera utilisé pour signer les certificats délivrés, l’autre comme certificat de secours en cas de 
-problème avec le premier. Les certificats Let's Encrypt peuvent normalement être validés et acceptés par défaut car 
-le certificat IdenTrust sera pré-installé sur les navigateurs internet les plus connus. À long terme, il est prévu 
-que les certificats Let's Encrypt soient pré-installés directement dans les applications.
- 
-Quelques autres CA (prix annuel en dollars) : 
+Quelques autres CA et leurs prix annuel : 
 
-| Nom             | Utilisation | Prix DV | Prix OV | Prix EV | Source                                                           |
-|-----------------|-------------|---------|---------|---------|------------------------------------------------------------------|
-| IdenTrust       | 38.5%       | ?       | $242    | $363    | [Lien](https://www.identrust.com/)                               |
-| DigiCert Group  | 13.1%       | ?       | $$268   | $430    | [Lien](https://www.digicert.com/fr)                               |
-| Sectigo         | 12.1%       | $99.00  | $179    | $249    | [Lien](https://www.sectigo.com/ssl-certificates-tls)              |
-| GlobalSign      | 16.1%       | $249    | $349    | $599    | [Lien](https://shop.globalsign.com/en/ssl)                        |
-| Let's Encrypt   | 5.8%        | Gratuit | -       | -       | [Lien](https://letsencrypt.org/fr/)                               |  
-| GoDaddy Group   | 4.8%        | $99.99  | $169.99 | $249.99 | [Lien](https://www.godaddy.com/fr-ca/securite-web/certificat-ssl) | 
+| Nom            | Utilisation | Prix DV | Prix OV     | Prix EV     | Source                                                            |
+|----------------|-------------|---------|-------------|-------------|-------------------------------------------------------------------|
+| IdenTrust      | 38.5%       | ?       | $242        | $363        | [Lien](https://www.identrust.com/)                                |
+| DigiCert Group | 13.1%       | ?       | $268        | $430        | [Lien](https://www.digicert.com/fr)                               |
+| Sectigo        | 12.1%       | $99     | $179        | $249        | [Lien](https://www.sectigo.com/ssl-certificates-tls)              |
+| GlobalSign     | 16.1%       | $249    | $349        | $599        | [Lien](https://shop.globalsign.com/en/ssl)                        |
+| Let's Encrypt  | 5.8%        | Gratuit | Pas proposé | Pas proposé | [Lien](https://letsencrypt.org/fr/)                               |  
+| GoDaddy Group  | 4.8%        | $99.99  | $169.99     | $249.99     | [Lien](https://www.godaddy.com/fr-ca/securite-web/certificat-ssl) | 
 
 Mais à quoi correspond DV, OV et EV ?
 
