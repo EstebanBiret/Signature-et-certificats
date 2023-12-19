@@ -45,7 +45,7 @@ Nous allons donc dans un permier temps générer une paire de clés RSA (privée
 
 #### Comment ça marche ?
 
-RSA, illustration très simplifiée :
+RSA, illustration très simplifiée (un groupe le présente déjà, nous n'allons pas rentrer dans les détails ici) :
 Tout d'abord calcul de la paire de clés :
 
 Choix des facteurs `p` = 79 et `q` = 127 (il faut choisir des nombres premiers assez grands, pour l'exemple ils sont très petits)
@@ -91,7 +91,7 @@ En regardant les détails de notre clé privée (openssl rsa -text -in `key`), o
 
 `b` (publicExponent) = 65537
 
-L'exposant public est 65537 pour des raisons historique, car les premières implémentations de RSA n'utilisaient pas
+L'exposant public est [65537](https://fr.wikipedia.org/wiki/65_537) pour des raisons historique, car les premières implémentations de RSA n'utilisaient pas
 correctement le "padding" (rembourrage) pour assurer la sécurité avec un petit exposant, et un trop grand exposant demandait trop de
 performances pour une sécurité équivalente.
 
@@ -105,8 +105,7 @@ Pour des raisons de sécurité. Si une personne malveillante (Rémy ou Cédric p
 openssl rsa -in key -des3 -out key_enc
 ```
 
-Plus de précision :
-- "des3" -> DES-EDE3-CBC
+Plus de précision : "des3" -> DES-EDE3-CBC, algorithme de chiffrement symétrique par bloc.
 - DES = Data Encryption Standard
 - EDE3 = Encryption Decryption Encryption with 3 keys
 - CBC = Cipher Block Chaining
@@ -115,7 +114,7 @@ Fonctionnement de des3 :
 
 ![des3](resources/des3.webp)
 
-DES-EDE3-CBC (des3) est un algorithme de chiffrement symétrique par bloc, voici comment OpenSSL génère un hash du mot de passe : 
+Nous allons maintenant voir comment OpenSSL génère un hash du mot de passe : 
 
 - Choix d'un Sel (Salt) : OpenSSL génère un sel aléatoire pour renforcer la sécurité du processus. Le sel est utilisé pour rendre le processus de chiffrement aléatoire, ce qui signifie que si on chiffre la même clé privée avec le même mot de passe plusieurs fois, on obtiendra des résultats différents en raison du sel.
 
@@ -191,7 +190,7 @@ Ensuite, plusieurs options sont définies :
              La signature numérique est générée à partir de ce hachage.
 
 
-- -inkey key_enc : Spécifie le fichier contenant la clé privée utilisée pour signer les données (clé.
+- -inkey key_enc : Spécifie le fichier contenant la clé privée utilisée pour signer les données
 
 
 - -out signature : Spécifie le fichier de sortie
@@ -225,8 +224,10 @@ Voici les options de cette commande :
 
 Un certificat peut être vu comme une carte d'identité numérique.
 Il est utilisé principalement pour identifier et authentifier une personne physique ou morale, mais surtout pour chiffrer ses échanges entre navigateurs et sites web.
-Il est signé par un tiers de confiance (une autorité de certification) qui atteste du lien entre l’identité physique (vous, un site web...) et l’entité numérique (votre clé publique, celle du site web...).
-Pour un site web il s’agit d’un certificat TLS/SSL. Le standard le plus utilisé pour la création des certificats numériques est le X.509.
+Il est signé par un tiers de confiance (une autorité de certification) qui atteste du lien entre l’identité physique (vous, un site web...) et l’entité numérique (votre clé publique, celle du site web...). Dans le cas de notre carte d'identité, c'est l'État la CA, qui certifie notre identité.
+Pour un site web il s’agit d’un certificat TLS/SSL. Le standard le plus utilisé pour la création des certificats numériques est le [X.509](https://www.itu.int/rec/dologin_pub.asp?lang=e&id=T-REC-X.509-200811-S!!PDF-E&type=items).
+
+Petit point rapide sur la norme X-509 :
 
 ### Génération d'un certificat autosigné
 
@@ -321,7 +322,7 @@ On peut vérifier avec cette commande que `certificat` a été crée et signé p
 openssl verify -CAfile CA.crt certificate.crt
 ```
 
-Notre certificat a été signé par Let's Encrypt. Mais dis-donc Jamy, qu'est ce que Let's Encrypt ?
+La CA la plus populaire est Let's Encrypt. Mais dis-donc Jamy, qu'est ce que Let's Encrypt ?
 
 ![jamy](resources/jamy.webp)
 
