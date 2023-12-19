@@ -358,10 +358,11 @@ Ce qui diffère, ce sont les processus d'audit et de vérification nécessaires 
 
 Pourquoi utiliser des CA payantes ?
 
-Une des raisons principale et la crédibilisation de son entreprise auprès du public, car un EV demande beaucoup de
-détails sur l'entité
-"car ils renforcent leur crédibilité en montrant aux consommateurs avertis qu’une transaction potentielle est effectuée
-avec un destinataire légitime et que le site Web prend au sérieux la protection des données de ses clients."
+Un des avantages de payer pour une CA, c'est le support technique qui nous sera fourni, ensuite cela peut renforcer
+notre crédibilité en montrant aux consommateurs avertis qu’une transaction potentielle est effectuée avec un
+destinataire légitime et que notre site web prend au sérieux la protection de leur données. Une autre raison peut être
+la durée de validité du certificat, car un certificat DV est limité à 90 jours, là où les deux autres vont au delà, et
+puisqu'il n'existe pas de CA qui fournit gratuitement des certificats OV ou EV cela est un avantage aux CA payantes.
 
 ## Sources
 
