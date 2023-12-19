@@ -91,9 +91,9 @@ En regardant les détails de notre clé privée (openssl rsa -text -in `key`), o
 
 `b` (publicExponent) = 65537
 
-L'exposant public est [65537](https://fr.wikipedia.org/wiki/65_537) pour des raisons historique, car les premières implémentations de RSA n'utilisaient pas
+L'exposant public est 65537 pour des raisons historique, car les premières implémentations de RSA n'utilisaient pas
 correctement le "padding" (rembourrage) pour assurer la sécurité avec un petit exposant, et un trop grand exposant demandait trop de
-performances pour une sécurité équivalente.
+performances pour une sécurité équivalente ([source](https://fr.wikipedia.org/wiki/65_537#Applications)).
 
 Ensuite, on chiffre notre paire de clé, et on renseigne un mot de passe. 
 
