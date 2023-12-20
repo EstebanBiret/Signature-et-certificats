@@ -233,6 +233,31 @@ Voici les options de cette commande :
 - -pubin -inkey key.pub : On précise la clé à utiliser, ici la clé publique de la personne ayant signé le fichier.
 -pubin permet de dire à OpenSSL que nous allons renseigner une clé publique, si nous mettons simplement -inkey key.pub, il va vouloir une clé privée.
 
+Dans la réalité, il y a par exemple le projet [Linux Mint](https://www.linuxmint.com/) qui fournit des signatures de
+leurs fichiers d'installation, voici le [checksum](https://ftp.heanet.ie/mirrors/linuxmint.com/stable/21.2/sha256sum.txt)
+et la signature [GPG](https://ftp.heanet.ie/mirrors/linuxmint.com/stable/21.2/sha256sum.txt.gpg) de la version 21.2
+(GPG est un autre algorithme utilisé pour la signature de fichiers).
+
+Pour vérifier la signature, il faut récupérer leur clé publique avec :
+
+```
+gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-key "27DE B156 44C6 B3CF 3BD7  D291 300F 846B A25B AE09"
+```
+
+Puis se positionner dans le répertoire qui contient le checksum et la signature et utiliser la commande suivante :
+
+```
+gpg --verify sha256sum.txt.gpg sha256sum.txt
+```
+
+On obtient alors :
+
+```
+gpg: Signature made Fri Sep 29 12:41:09 2023 CEST
+gpg:                using RSA key 27DEB15644C6B3CF3BD7D291300F846BA25BAE09
+gpg: Good signature from "Linux Mint ISO Signing Key <root@linuxmint.com>" [unknown]
+```
+
 ## Certificats
 
 Un certificat peut être vu comme une carte d'identité numérique.

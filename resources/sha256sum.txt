@@ -1,0 +1,4 @@
+116578dda0e03f1421c214acdd66043b586e7afc7474e0796c150ac164a90a2a *linuxmint-21.2-cinnamon-64bit.iso
+46b1e171d678d0eba7916ed2b4eecac8993c5e94d3d5a1231ca7d480314f1553 *linuxmint-21.2-mate-64bit.iso
+e532dca4f28a88e52587a0e1af14236b233d2cec629d9f93e7c92383b4490a55 *linuxmint-21.2-xfce-64bit.iso
+b149f7fc4cbbc9f8fb547d50fef3e761a9c918ded55e67c33214997f007b91bd *linuxmint-21.2-cinnamon-64bit-edge.iso
