@@ -138,7 +138,7 @@ Nous allons maintenant voir comment OpenSSL génère un hash du mot de passe :
 
 - La clé dérivée elle-même n'est pas directement le hash du mot de passe, mais plutôt une clé symétrique qui est utilisée pour chiffrer et déchiffrer la clé privée.
 
-Si nous renseignons un mdp plus court que la taille de la clé, OpenSSL pourrait ajouter du padding au mdp pour atteindre la taille attendue (mais processus de dérivation de clé moins sûr), ou alors utiliser une fonction de hachage
+Si nous renseignons un mot de passe plus court que la taille de la clé, OpenSSL pourrait ajouter du padding au mdp pour atteindre la taille attendue (mais processus de dérivation de clé moins sûr), ou alors utiliser une fonction de hachage
 pour traiter le mot de passe avant de le passer à l'algorithme de dérivation de clé. Cela pourrait impliquer l'application d'une fonction de hachage comme SHA-256 ou SHA-512 pour générer une entrée de la taille appropriée pour l'algorithme de dérivation de clé.
 
 Le choix de l'algorithme de dérivation de clé et la gestion du sel sont importants pour la sécurité de cette opération. OpenSSL utilise généralement une forme de dérivation de clé sécurisée, telle que PBKDF2, pour rendre le processus résistant aux attaques par force brute. 
