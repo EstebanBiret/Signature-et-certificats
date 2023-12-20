@@ -268,6 +268,8 @@ Il est utilisé principalement pour identifier et authentifier une personne phys
 Il est signé par un tiers de confiance (une autorité de certification) qui atteste du lien entre l’identité physique (vous, un site web...) et l’entité numérique (votre clé publique, celle du site web...). Dans le cas de notre carte d'identité, c'est l'État la CA, qui certifie notre identité.
 Pour un site web il s’agit d’un certificat TLS/SSL. Le standard le plus utilisé pour la création des certificats numériques est le [X.509](https://www.itu.int/rec/dologin_pub.asp?lang=e&id=T-REC-X.509-200811-S!!PDF-E&type=items).
 
+X.509 représente une norme spécifiant les formats pour les certificats à clé publique. Elle repose sur un système hiérarchique d'autorités de certification, à l'inverse des réseaux de confiance (telle la toile de confiance [OpenPGP](https://fr.wikipedia.org/wiki/OpenPGP)), où n'importe qui peut signer les certificats d'autrui.
+
 ### Génération d'un certificat autosigné
 
 Normalement, on ne signe pas soi-même son certificat, car si tout le monde faisait ça il faudrait faire confiance à tout
