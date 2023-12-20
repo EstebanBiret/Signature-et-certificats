@@ -227,7 +227,7 @@ Il est utilisé principalement pour identifier et authentifier une personne phys
 Il est signé par un tiers de confiance (une autorité de certification) qui atteste du lien entre l’identité physique (vous, un site web...) et l’entité numérique (votre clé publique, celle du site web...). Dans le cas de notre carte d'identité, c'est l'État la CA, qui certifie notre identité.
 Pour un site web il s’agit d’un certificat TLS/SSL. Le standard le plus utilisé pour la création des certificats numériques est le [X.509](https://www.itu.int/rec/dologin_pub.asp?lang=e&id=T-REC-X.509-200811-S!!PDF-E&type=items).
 
-Petit point rapide sur la norme X-509 :
+Petit point rapide sur la norme X.509 :
 
 ### Génération d'un certificat autosigné
 
@@ -269,6 +269,24 @@ Nous pouvons visualiser le certificat avec cette commande :
 openssl x509 -text -in CA.crt
 ```
 
+Sortie :
+```
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            76:14:26:2e:56:28:08:b0:e5:b9:a0:24:10:e1:e5:29:2c:dc:db:92
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C = FR, ST = Haute-Garonne, L = Blagnac, O = R\C3\83\C2\A9steban, CN = GUITOSCANO
+        Validity
+            Not Before: Nov 17 13:31:53 2023 GMT
+            Not After : Nov 16 13:31:53 2026 GMT
+        Subject: C = FR, ST = Haute-Garonne, L = Blagnac, O = R\C3\83\C2\A9steban, CN = GUITOSCANO
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+...
+```
+
 Nous avons accès à plusieurs informations, celles renseignées auparavant, et notre clé publique, la période de validité du certificat, l'algorithme de signature utilisé, notre signature en hexa...
 
 
@@ -297,6 +315,27 @@ Nous allons dans un premier temps créer une requête de certificat :
 
 ```
 openssl req -new -key key_enc -out request
+```
+
+Le fichier contient ceci :
+```
+-----BEGIN CERTIFICATE REQUEST-----
+MIICozCCAYsCAQAwSTELMAkGA1UEBhMCRlIxFjAUBgNVBAgMDUhhdXRlLUdhcm9u
+bmUxEDAOBgNVBAoMB0NvbXBhbnkxEDAOBgNVBAMMB215IG5hbWUwggEiMA0GCSqG
+SIb3DQEBAQUAA4IBDwAwggEKAoIBAQDEEggjW3BII9OO0lXxwnXMRJFT7OCj8qRS
+QrfwLrXi72i47ri72mhJv+KUfQArC/p/CIbcSyN5bkDjxYaHmro6dNxZ5u59P3RJ
+SEej/yjHkd9I1zPZzElL8qbPHqQF9kGvB51aVyBS1MP9GJ4nGF5yNjjCf8fqX8nY
+RsFkS8/TPo/5/qU5U0K6Np3GJ5YjzFhcC4IY6HmV+R5qAVtVej6Z4D4D6Mp9biay
+BWT1PdoiU8Dx5unxDouKTnY7GRrX2NXAX6HaI2BOYUfZV9qg30F8pmBjZU30I56X
+t2IXTs4VXjUrCK99hPE/qEMxvul2fhJhFrYj3hB/LFF1DLzQms6vAgMBAAGgFTAT
+BgkqhkiG9w0BCQcxBgwEcHN3ZDANBgkqhkiG9w0BAQsFAAOCAQEADRNEjkgZ4bOn
+4i/8QKYAJ0l0KSXx9VVHSbfx0DuW2opElpDrHw34VMkOJ6IDNKCjHMqQvUZqBGzZ
+OJWpDRYnCjXPmmRp0l3qeOQJXFH8GzTRUVYsySVrCf4u2qhHUGyDwgMMBvGFCtpK
+JCEEkrc/W5pSymDcVwOf+pE0E4des9fRbEFIMnXe+zqNMiGOTB8E6ifWoPLFFC97
+YS4beY8nbHoRgJasrttym2XJN4IJvhQI7O9dRFbEtaJk/SgvitHhj4MA8k37EmUN
+95+IQpwNrKtIjwewxwmdqPMg6t5IBpjORyFev1DqxoPxkLM/d7pRE8v7XGcHgZ8z
+BEQDXWLb2A==
+-----END CERTIFICATE REQUEST-----
 ```
 
 Ensuite, nous allons contacter une CA qui nous délivrera un certificat signé, après avoir procédé (normalement) à quelques vérifications nous concernant... 
