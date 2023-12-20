@@ -276,8 +276,8 @@ Normalement, on ne signe pas soi-même son certificat, car si tout le monde fais
 le monde, ce qui revient à ne faire confiance à personne. 
 
 Donc on crée une requête de certification qui servira à créer un
-certificat par une  "autorité de certification" (CA en anglais), auquelle tout le monde fait confiance et dont leurs
-cetificats d'autorité son implémentés dans les navigateurs web, donc un certificat signé par une de ces CA sera
+certificat par une  "autorité de certification", auquelle tout le monde fait confiance et dont leurs
+certificats d'autorité son implémentés dans les navigateurs web, donc un certificat signé par une de ces CA sera
 vérifiable facilement.
 
 Dans notre cas nous allons donc faire un certificat autosigné, car on ne fait que des exemples et pas de projets sérieux
@@ -440,9 +440,9 @@ Pourquoi utiliser des CA payantes ?
 
 Un des avantages de payer pour une CA, c'est le support technique qui nous sera fourni, ensuite cela peut renforcer
 notre crédibilité en montrant aux consommateurs avertis qu’une transaction potentielle est effectuée avec un
-destinataire légitime et que notre site web prend au sérieux la protection de leur données. Une autre raison peut être
+destinataire légitime et que notre site web prend au sérieux la protection de leurs données. Une autre raison peut être
 la durée de validité du certificat, car un certificat DV est limité à 90 jours, là où les deux autres vont au delà, et
-puisqu'il n'existe pas de CA qui fournit gratuitement des certificats OV ou EV cela est un avantage aux CA payantes.
+puisqu'il n'existe pas de CA qui fournit gratuitement des certificats OV ou EV, cela est un avantage aux CA payantes.
 
 ## Sources
 
