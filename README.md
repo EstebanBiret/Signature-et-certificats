@@ -127,6 +127,7 @@ Fonctionnement de des3 :
 
 ![des3](resources/des3.webp)
 
+
 Nous allons maintenant voir comment OpenSSL génère un hash du mot de passe : 
 
 - Choix d'un Sel (Salt) : OpenSSL génère un sel aléatoire pour renforcer la sécurité du processus. Le sel est utilisé pour rendre le processus de chiffrement aléatoire, ce qui signifie que si on chiffre la même clé privée avec le même mot de passe plusieurs fois, on obtiendra des résultats différents en raison du sel.
@@ -136,6 +137,9 @@ Nous allons maintenant voir comment OpenSSL génère un hash du mot de passe :
 
 
 - La clé dérivée elle-même n'est pas directement le hash du mot de passe, mais plutôt une clé symétrique qui est utilisée pour chiffrer et déchiffrer la clé privée.
+
+Si nous renseignons un mdp plus court que la taille de la clé, OpenSSL pourrait ajouter du padding au mdp pour atteindre la taille attendue (mais processus de dérivation de clé moins sûr), ou alors utiliser une fonction de hachage
+pour traiter le mot de passe avant de le passer à l'algorithme de dérivation de clé. Cela pourrait impliquer l'application d'une fonction de hachage comme SHA-256 ou SHA-512 pour générer une entrée de la taille appropriée pour l'algorithme de dérivation de clé.
 
 
 ##### Le choix de l'algorithme de dérivation de clé et la gestion du sel sont importants pour la sécurité de cette opération. OpenSSL utilise généralement une forme de dérivation de clé sécurisée, telle que PBKDF2, pour rendre le processus résistant aux attaques par force brute. 
@@ -160,7 +164,7 @@ On se retrouve avec deux fichiers, l'un contenant la clé privée (key_enc) et l
 On peut voir que la clé publique (et également la clé privée et les certificats) est encodée d'une certaine manière. 
 
 Le format PEM de la clé encode les données binaires en base 64. PEM définit également un en-tête d’une ligne, composé de ----BEGIN, le label du fichier en question et -----, et un pied de page d’une ligne, composé de ----END,  le label du fichier en question et -----.
-Le label du fichier détermine le type de message codé. Les types courants comprennent : CERTIFICATE, CERTIFICATE REQUEST, PRIVATE KEY, PUBLIC KEY et X509 CRL.
+Le label du fichier détermine le type de message codé. Les types courants comprennent : CERTIFICATE, CERTIFICATE REQUEST, PRIVATE KEY, PUBLIC KEY et X-509 CRL.
 
 ### Signer numériquement un fichier
 
@@ -265,8 +269,6 @@ Il est utilisé principalement pour identifier et authentifier une personne phys
 Il est signé par un tiers de confiance (une autorité de certification) qui atteste du lien entre l’identité physique (vous, un site web...) et l’entité numérique (votre clé publique, celle du site web...). Dans le cas de notre carte d'identité, c'est l'État la CA, qui certifie notre identité.
 Pour un site web il s’agit d’un certificat TLS/SSL. Le standard le plus utilisé pour la création des certificats numériques est le [X.509](https://www.itu.int/rec/dologin_pub.asp?lang=e&id=T-REC-X.509-200811-S!!PDF-E&type=items).
 
-Petit point rapide sur la norme X.509 :
-
 ### Génération d'un certificat autosigné
 
 Normalement, on ne signe pas soi-même son certificat, car si tout le monde faisait ça il faudrait faire confiance à tout
@@ -326,7 +328,6 @@ Certificate:
 ```
 
 Nous avons accès à plusieurs informations, celles renseignées auparavant, et notre clé publique, la période de validité du certificat, l'algorithme de signature utilisé, notre signature en hexa...
-
 
 On peut voir la période de validité de notre certificat avec cette commande : 
 
@@ -406,7 +407,7 @@ La CA la plus populaire est Let's Encrypt. Mais dis-donc Jamy, qu'est ce que Let
 Let's Encrypt est une autorité de certification à but non lucratif fournissant des certificats gratuits X.509 pour le protocole cryptographique TLS au moyen d'un processus 
 automatisé destiné à se passer du processus complexe impliquant la création manuelle, la validation, la signature, 
 l'installation et le renouvellement des certificats pour la sécurisation des sites internet.
-C'est l'une des autorité de certifications les plus connue car ses services sont gratuits et [open source](https://github.com/letsencrypt/boulder),
+C'est l'une des autorités de certification les plus connues car ses services sont gratuits et [open source](https://github.com/letsencrypt/boulder),
 elle fonctionne sur le modèle des donations.
 
 Quelques autres CA et leurs prix annuel : 
