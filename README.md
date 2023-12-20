@@ -130,10 +130,10 @@ Fonctionnement imagé de des3 :
 
 Nous allons maintenant voir comment OpenSSL génère un hash du mot de passe : 
 
-- Choix d'un Sel (Salt) : OpenSSL génère un sel aléatoire pour renforcer la sécurité du processus. Le sel est utilisé pour rendre le processus de chiffrement aléatoire, ce qui signifie que si on chiffre la même clé privée avec le même mot de passe plusieurs fois, on obtiendra des résultats différents en raison du sel.
+- Choix d'un sel (Salt) : OpenSSL génère un sel aléatoire pour renforcer la sécurité du processus. Le sel est utilisé pour rendre le processus de chiffrement aléatoire, ce qui signifie que si on chiffre la même clé privée avec le même mot de passe plusieurs fois, on obtiendra des résultats différents en raison du sel.
 
 
-- Chiffrement de la Clé Privée : OpenSSL utilise le mot de passe (et éventuellement le sel) pour dériver une clé à partir du mot de passe en utilisant un algorithme de dérivation de clé. Ensuite, cette clé dérivée est utilisée pour chiffrer la clé privée RSA à l'aide de DES3.
+- Chiffrement de la clé privée : OpenSSL utilise le mot de passe (et éventuellement le sel) pour dériver une clé à partir du mot de passe en utilisant un algorithme de dérivation de clé. Ensuite, cette clé dérivée est utilisée pour chiffrer la clé privée RSA à l'aide de DES3.
 
 
 - La clé dérivée elle-même n'est pas directement le hash du mot de passe, mais plutôt une clé symétrique qui est utilisée pour chiffrer et déchiffrer la clé privée.
@@ -141,8 +141,7 @@ Nous allons maintenant voir comment OpenSSL génère un hash du mot de passe :
 Si nous renseignons un mdp plus court que la taille de la clé, OpenSSL pourrait ajouter du padding au mdp pour atteindre la taille attendue (mais processus de dérivation de clé moins sûr), ou alors utiliser une fonction de hachage
 pour traiter le mot de passe avant de le passer à l'algorithme de dérivation de clé. Cela pourrait impliquer l'application d'une fonction de hachage comme SHA-256 ou SHA-512 pour générer une entrée de la taille appropriée pour l'algorithme de dérivation de clé.
 
-
-##### Le choix de l'algorithme de dérivation de clé et la gestion du sel sont importants pour la sécurité de cette opération. OpenSSL utilise généralement une forme de dérivation de clé sécurisée, telle que PBKDF2, pour rendre le processus résistant aux attaques par force brute. 
+Le choix de l'algorithme de dérivation de clé et la gestion du sel sont importants pour la sécurité de cette opération. OpenSSL utilise généralement une forme de dérivation de clé sécurisée, telle que PBKDF2, pour rendre le processus résistant aux attaques par force brute. 
 
 PBKDF2, c'est quoi ?
 
