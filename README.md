@@ -62,6 +62,13 @@ Calcul de la clé publique `b`, tel que b vérifie cette égalite :
 
 Nous allons désormais le faire à l'aide d'OpenSSL.
 
+Petit zoom sur OpenSSL : 
+
+"OpenSSL est une boîte à outils de chiffrement comportant deux bibliothèques, libcrypto et libssl, fournissant respectivement une implémentation des algorithmes cryptographiques et du protocole de communication SSL/TLS, ainsi qu'une interface en ligne de commande, openssl.
+Développée en C, OpenSSL est disponible sur les principaux systèmes d'exploitation et dispose de nombreux wrappers ce qui la rend utilisable dans une grande variété de langages informatiques. En 2014, deux tiers des sites Web l'utilisaient3."
+OpenSSL voit le jour en 1998, dans le but de mettre à la disposition de tous les outils libres pour le chiffrement.
+OpenSSL supporte un grand nombre de types de chiffrement (AES, Blowfish, Camellia...), de fonctions de hachage cryptographique (MD5, SHA-1...), et de types de cryptographie à clé publique (RSA, DSA, courbe elliptique...).
+
 -------------
 
 Nous allons générer notre paire de clés RSA (privée & publique) avec OpenSSL 
@@ -91,9 +98,9 @@ En regardant les détails de notre clé privée (openssl rsa -text -in `key`), o
 
 `b` (publicExponent) = 65537
 
-L'exposant public est 65537 pour des raisons historique, car les premières implémentations de RSA n'utilisaient pas
-correctement le "padding" (rembourrage) pour assurer la sécurité avec un petit exposant, et un trop grand exposant demandait trop de
+L'exposant public est 65537, car c'est le plus utilisé. En effet, la factorisation serait trop simple avec un petit exposant, et un trop grand exposant demande trop de
 performances pour une sécurité équivalente ([source](https://fr.wikipedia.org/wiki/65_537#Applications)).
+65537 est le plus grand nombre Premier de Ferma que l'on connaisse aujourd'hui (avec 3, 5, 17 et 257) (écriture -> 2^n -1). ([source](https://www.techno-science.net/glossaire-definition/Nombre-de-Fermat-page-2.html))
 
 Ensuite, on chiffre notre paire de clé, et on renseigne un mot de passe. 
 
