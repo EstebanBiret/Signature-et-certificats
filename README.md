@@ -118,15 +118,15 @@ Pour des raisons de sécurité. Si une personne malveillante (Rémy ou Cédric p
 openssl rsa -in key -des3 -out key_enc
 ```
 
-Plus de précision : "des3" -> DES-EDE3-CBC, algorithme de chiffrement symétrique par bloc.
-- DES = Data Encryption Standard
-- EDE3 = Encryption Decryption Encryption with 3 keys
-- CBC = Cipher Block Chaining
+Plus de précision : "-des3" sous entend DES-EDE3-CBC, qui sont les algorithmes utilisés pour réaliser le chiffrement,
+ce sont les acronymes de :
+- DES : Data Encryption Standard, l'algorithme symétrique qui chiffre
+- EDE3 : Encryption Decryption Encryption with 3 keys, une méthode qui utiliser 3 clés de chiffrement
+- CBC : Cipher Block Chaining, lecture bloc par bloc
 
-Fonctionnement de des3 :
+Fonctionnement imagé de des3 :
 
 ![des3](resources/des3.webp)
-
 
 Nous allons maintenant voir comment OpenSSL génère un hash du mot de passe : 
 
