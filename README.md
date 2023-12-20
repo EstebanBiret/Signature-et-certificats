@@ -164,7 +164,7 @@ On se retrouve avec deux fichiers, l'un contenant la clé privée (key_enc) et l
 On peut voir que la clé publique (et également la clé privée et les certificats) est encodée d'une certaine manière. 
 
 Le format PEM de la clé encode les données binaires en base 64. PEM définit également un en-tête d’une ligne, composé de ----BEGIN, le label du fichier en question et -----, et un pied de page d’une ligne, composé de ----END,  le label du fichier en question et -----.
-Le label du fichier détermine le type de message codé. Les types courants comprennent : CERTIFICATE, CERTIFICATE REQUEST, PRIVATE KEY, PUBLIC KEY et X-509 CRL.
+Le label du fichier détermine le type de message codé. Les types courants comprennent : CERTIFICATE, CERTIFICATE REQUEST, PRIVATE KEY, PUBLIC KEY et X509 CRL.
 
 ### Signer numériquement un fichier
 
