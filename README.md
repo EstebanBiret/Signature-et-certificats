@@ -65,7 +65,7 @@ Nous allons désormais le faire à l'aide d'OpenSSL.
 Petit zoom sur OpenSSL : 
 
 "OpenSSL est une boîte à outils de chiffrement comportant deux bibliothèques, libcrypto et libssl, fournissant respectivement une implémentation des algorithmes cryptographiques et du protocole de communication SSL/TLS, ainsi qu'une interface en ligne de commande, openssl.
-Développée en C, OpenSSL est disponible sur les principaux systèmes d'exploitation et dispose de nombreux wrappers ce qui la rend utilisable dans une grande variété de langages informatiques. En 2014, deux tiers des sites Web l'utilisaient3."
+Développée en C, OpenSSL est disponible sur les principaux systèmes d'exploitation et dispose de nombreux wrappers ce qui la rend utilisable dans une grande variété de langages informatiques. En 2014, deux tiers des sites Web l'utilisaient."
 OpenSSL voit le jour en 1998, dans le but de mettre à la disposition de tous les outils libres pour le chiffrement.
 OpenSSL supporte un grand nombre de types de chiffrement (AES, Blowfish, Camellia...), de fonctions de hachage cryptographique (MD5, SHA-1...), et de types de cryptographie à clé publique (RSA, DSA, courbe elliptique...).
 
@@ -100,7 +100,7 @@ En regardant les détails de notre clé privée (openssl rsa -text -in `key`), o
 
 L'exposant public est 65537, car c'est le plus utilisé. En effet, la factorisation serait trop simple avec un petit exposant, et un trop grand exposant demande trop de
 performances pour une sécurité équivalente ([source](https://fr.wikipedia.org/wiki/65_537#Applications)).
-65537 est le plus grand nombre Premier de Ferma que l'on connaisse aujourd'hui (avec 3, 5, 17 et 257) (écriture -> 2^n -1). ([source](https://www.techno-science.net/glossaire-definition/Nombre-de-Fermat-page-2.html))
+65537 est le plus grand nombre premier de Fermat que l'on connaisse aujourd'hui (avec 3, 5, 17 et 257) (écriture -> 2^2^n + 1). ([source](https://www.techno-science.net/glossaire-definition/Nombre-de-Fermat-page-2.html))
 
 Ensuite, on chiffre notre paire de clé, et on renseigne un mot de passe. 
 
