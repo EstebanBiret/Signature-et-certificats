@@ -27,7 +27,13 @@ Pour un site web il s’agit d’un certificat SSL et le standard le plus utilis
 
 ## Signatures
 
-Petit rappel : La signature numérique est un mécanisme permettant d'authentifier l'auteur d'un document électronique et d'en garantir la non-répudiation (ne peut être remis en cause par l'une des parties), par analogie avec la signature manuscrite d'un document papier
+La signature numérique est un mécanisme permettant d'authentifier l'auteur d'un document électronique et d'en garantir
+la non-répudiation (ne peut être remis en cause par l'une des parties), par analogie avec la signature manuscrite d'un
+document papier.
+
+C'est un mécanisme utilisé principalement par le protocole HTTPS pour la signature des certificats, qui sont utilisés
+pour chiffrer les échanges entre navigateurs et site web. C'est aussi utilisé pour signer des fichiers d'installation
+afin de vérifier leur authenticité.
 
 Pourquoi opter pour la signature numérique ? 
 
